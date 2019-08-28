@@ -1,0 +1,150 @@
+.App {
+  text-align: center;
+  font-family: 'Garamond';
+  background-color: blanchedalmond;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  color: black;
+  font-size: calc(10px + 1vmin);
+}
+
+.TextContainer {
+  text-align: left;
+  max-width: 640px;
+  min-width: 640px;
+}
+
+.DJContainer {
+  text-align: left;
+  max-width: 250px;
+  min-width: 250px;
+}
+
+.NewsImageContainer {
+  max-height: 200px;
+  min-height: 200px;
+  max-width: 200px;
+  min-width: 200px;
+  margin-inline: 1em;
+  margin-top: 1em;
+  align-self: center;
+}
+
+.LogoImageContainer {
+  max-height: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  min-width: 50px;
+  margin-inline: 1em;
+  margin-top: 1em;
+  align-self: center;
+}
+
+.ImageLinks:hover {
+  background-color: transparent;
+}
+
+.GrowingContainer {
+  display: inline-flex;
+}
+
+.DJsContainer {
+  display: inline-flex;
+}
+
+.Header {
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.Logo {
+  max-height: 10vh;
+  margin-inline: 1em;
+  animation: spin 5s linear infinite;
+}
+
+button {
+  background-color: burlywood;
+  color: darkred;
+  border: none;
+  padding: 8px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Garamond';
+}
+
+button:hover {
+  background-color: black;
+  color: darkgoldenrod;
+}
+
+.noInteraction {
+  pointer-events: none;
+}
+
+a{
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darkgoldenrod;
+  background-color: black;
+}
+
+.active {
+  color: darkred;
+  background-color: burlywood;
+}
+
+ul {
+  padding: 0;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+form {
+  margin: 0 auto;
+  padding: 0.5em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+}
+
+label span {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  border: 1px solid #999;
+}
+
+label {
+  position: relative;
+}
+
+input:focus, textarea:focus {
+    border-color: #000;
+}
+
+textarea {
+  vertical-align: top;
+  resize: none;
+  font-family: 'Garamond';
+  font-size: calc(10px + 1vmin);
+}
+
+.formButton {
+  float: right;
+}

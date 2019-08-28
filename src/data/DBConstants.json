@@ -1,0 +1,37 @@
+{
+    "URL_ROOT": "https://cors-hipdadradio.herokuapp.com/https://sheets.googleapis.com/v4/spreadsheets/",
+    "values": {
+        "schedule": {
+            "DB_VALUES": "A%3AD",
+            "DB_ID": "1Wz2WIicOAUqn6TjCdYQR0i8j1udVw51AeHFUSN7EWSw",
+            "COLUMN_HEADERS": {
+                "SHOW_TITLE": 0,
+                "VIDEO_ID": 1,
+                "START_DATE": 2,
+                "END_DATE": 3
+            }
+        },
+        "news": {
+            "DB_VALUES": "A%3AD",
+            "DB_ID": "1fnv5qI5rNGExodkl_3vnNfwZyRX9k_QlH3KVlUR1xwU",
+            "COLUMN_HEADERS": {
+                "DATE": 0,
+                "TITLE": 1,
+                "TEXT": 2,
+                "IMAGE": 3
+            }
+        },
+        "djs": {
+            "DB_VALUES": "A%3AC",
+            "DB_ID": "16rKdGU-8yrbte-yH7uP0hmPePO33qQLOUQwIia-3hSs",
+            "COLUMN_HEADERS": {
+                "NAME": 0,
+                "BIO": 1,
+                "IMAGE": 2
+            }
+        }
+    },
+    "SCHEDULE": "SCHEDULE",
+    "NEWS": "NEWS",
+    "DJS": "DJS"
+}
