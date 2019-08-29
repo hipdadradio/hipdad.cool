@@ -29,9 +29,21 @@
                 "BIO": 1,
                 "IMAGE": 2
             }
+        },
+        "photos": {
+            "DB_VALUES": "A%3AE",
+            "DB_ID": "1Q9eNT7FZNIor2Et_V8on8bnaR3wdQKPniIYA89q_VnQ",
+            "COLUMN_HEADERS": {
+                "TITLE": 0,
+                "AUTHOR": 1,
+                "ALBUM_DESC": 2,
+                "IMAGE_DESC": 3,
+                "IMAGE_SRC": 4
+            }
         }
     },
     "SCHEDULE": "SCHEDULE",
     "NEWS": "NEWS",
-    "DJS": "DJS"
+    "DJS": "DJS",
+    "PHOTOS": "PHOTOS"
 }

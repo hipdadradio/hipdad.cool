@@ -6,6 +6,40 @@ import APIConstants from '../data/APIConstants.json'
 // Cache
 let dataCache = {};
 
+export const fetchPhotoArchives = (handleFetchedPhotos) => {
+    if (dataCache[DBConstants.PHOTOS] !== undefined) {
+        handleFetchedPhotos(dataCache[DBConstants.PHOTOS]);
+    } else {
+        const Http = new XMLHttpRequest();
+
+        const url = buildPhotosUrl();
+
+        Http.onload = function (e) {
+            if (Http.readyState === 4) {
+                if (Http.status === 200) {
+                    // If we have a successful request, we will parse the response
+                    let photoData = JSON.parse(Http.responseText);
+
+                    // Get rid of the first row of the sheet
+                    let photos = photoData.values.splice(1);
+
+                    // Assign response to dataCache[DBConstants.PHOTOS]
+                    dataCache[DBConstants.PHOTOS] = photos;
+
+                    handleFetchedPhotos(photos);
+                } else {
+                    console.error(Http.statusText);
+                }
+            }
+        };
+
+        // Code to execute the http request
+        Http.open("GET", url, true);
+        Http.send();
+
+    }
+}
+
 export const fetchHipDadDjs = (handleFetchedDjs) => {
     if (dataCache[DBConstants.DJS] !== undefined) {
         handleFetchedDjs(dataCache[DBConstants.DJS]);
@@ -17,7 +51,7 @@ export const fetchHipDadDjs = (handleFetchedDjs) => {
         Http.onload = function (e) {
             if (Http.readyState === 4) {
                 if (Http.status === 200) {
-                    // If we have a successful request, we will parse the response and check if we have a video to play
+                    // If we have a successful request, we will parse the response
                     let djsData = JSON.parse(Http.responseText);
 
                     // Get rid of the first row of the sheet
@@ -50,7 +84,7 @@ export const fetchHipDadNews = (handleFetchedNews) => {
         Http.onload = function (e) {
             if (Http.readyState === 4) {
                 if (Http.status === 200) {
-                    // If we have a successful request, we will parse the response and check if we have a video to play
+                    // If we have a successful request, we will parse the response
                     let newsData = JSON.parse(Http.responseText);
 
                     // Get rid of the first row of the sheet
@@ -203,6 +237,18 @@ const buildDjsUrl = () => {
     return url;
 }
 
+const buildPhotosUrl = () => {
+    let url = DBConstants.URL_ROOT;
+
+    url += "/" + DBConstants.values.photos.DB_ID;
+
+    url += "/values/" + DBConstants.values.photos.DB_VALUES;
+
+    url += "?key=" + APIConstants.KEY;
+
+    return url;
+}
+
 /* 
     Function that will take the array of arrays of scheduled shows and convert it to an array of objects
  */
@@ -220,6 +266,48 @@ export const parseScheduleData = (scheduleData) => {
     });
 
     return shows;
+}
+
+export const parsePhotoData = (photoData) => {
+    let archives = [];
+
+    var i = 0;
+
+    while (i < photoData.length) {
+        let currentRow = photoData[i];
+
+        let album = {
+            title: currentRow[DBConstants.values.photos.COLUMN_HEADERS.TITLE],
+            author: currentRow[DBConstants.values.photos.COLUMN_HEADERS.AUTHOR],
+            description: currentRow[DBConstants.values.photos.COLUMN_HEADERS.ALBUM_DESC]
+        };
+
+        let photos = [];
+
+        photos.push({
+            imgSrc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
+            desc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
+        });
+
+        i++;
+
+        while (i < photoData.length && !photoData[i][DBConstants.values.photos.COLUMN_HEADERS.TITLE]) {
+            let photoRow = photoData[i]
+
+            photos.push({
+                imgSrc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
+                desc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
+            })
+
+            i++;
+        }
+
+        album.photos = photos;
+
+        archives.push(album);
+    }
+
+    return archives.reverse();
 }
 
 export const parseNewsData = (newsData) => {

@@ -5,6 +5,7 @@ import { ShowContainer } from './containers/ShowContainer';
 import { AboutContainer } from './containers/AboutContainer';
 import { PlayerContainer } from './containers/PlayerContainer';
 import { ContactContainer } from './containers/ContactContainer';
+import { PhotoPageContainer } from './containers/PhotoPageContainer';
 
 import YTConstants from './data/YTConstants.json';
 
@@ -38,4 +39,8 @@ export const HipDadAds = () => {
 
 export const ContactUs = () => {
   return <ContactContainer title="Contact Us" />
+}
+
+export const Photos = () => {
+  return <PhotoPageContainer />
 }
