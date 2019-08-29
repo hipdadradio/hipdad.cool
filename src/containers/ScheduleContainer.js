@@ -47,7 +47,7 @@ export class ScheduleContainer extends React.Component {
 
     render() {
         return (
-            <h4 className="TextContainer">
+            <h4 className="textContainer">
                 <strong>
                     Scheduled shows:
                 </strong>

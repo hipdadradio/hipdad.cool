@@ -18,7 +18,7 @@ export const About = () => {
   return <AboutContainer />;
 }
 
-export const Player = () => {
+export const Listen = () => {
   return <PlayerContainer />;
 }
 

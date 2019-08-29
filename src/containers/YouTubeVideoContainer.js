@@ -7,9 +7,9 @@ import YouTube from 'react-youtube';
 export const YouTubeVideoContainer = (props) => {
     return (
         <div>
-            <h3 className="TextContainer">{props.title}</h3>
+            <h3 className="textContainer">{props.title}</h3>
             <YouTube videoId={props.src} />
-            <p className="TextContainer">{props.description}</p>
+            <p className="textContainer">{props.description}</p>
         </div>
     )
 }

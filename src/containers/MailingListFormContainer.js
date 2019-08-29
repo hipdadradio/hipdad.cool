@@ -59,7 +59,7 @@ export class MailingListFormContainer extends React.Component {
 
     render() {
         return (
-            <div className="TextContainer" >
+            <div className="textContainer" >
                 <h2>Join Our Mailing List!<button className="formButton" onClick={this.startForm} hidden={this.state.started}>Looking for more?</button></h2>
                 <form onSubmit={this.handleSubmit} hidden={!this.state.started}>
                     <h4>Join our mailing list for updates on all things Hip Dad Radio!</h4>

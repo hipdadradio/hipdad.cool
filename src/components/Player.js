@@ -31,6 +31,7 @@ export class Player extends React.Component {
             activePlayer: "",
             playing: "",
             videoTitle: "...",
+            numberOfListeners: Math.round(Math.random() * 100),
             twitchPlayer: undefined,
             youTubePlayer: undefined
         };
@@ -54,25 +55,6 @@ export class Player extends React.Component {
         twitchPlayer.addEventListener(Twitch.Player.PLAYING, this.showTwitch);
         twitchPlayer.addEventListener(Twitch.Player.OFFLINE, this.hideTwitch);
     }
-
-    // showTwitch() {
-    //     this.setState({
-    //         activePlayer: PlayerConstants.TWITCH,
-    //         videoTitle: "Hip Dad Radio: LIVE"
-    //     });
-
-    //     if (this.state.youTubePlayer) {
-    //         this.state.youTubePlayer.pauseVideo();
-    //     }
-    // }
-
-    // hideTwitch() {
-    //     this.setState({ activePlayer: PlayerConstants.YOUTUBE });
-
-    //     if (this.state.youTubePlayer) {
-    //         this.state.youTubePlayer.playVideo();
-    //     }
-    // }
 
     showTwitch() {
         this.setState({ volume: this.state.youTubePlayer.getVolume() });
@@ -161,6 +143,8 @@ export class Player extends React.Component {
     startBlockedYouTubeVideoChecker() {
         setInterval(
             function (self) {
+                self.setState({ numberOfListeners: self.state.numberOfListeners + (Math.round(Math.random() * 2 - 1)) })
+
                 // If we're playing the playlist check the state of the player
                 if (self.state.playing === PlayerConstants.HDR) {
                     // If we've been waiting over 2 seconds, skip the video
@@ -244,7 +228,7 @@ export class Player extends React.Component {
     render() {
         return (
             <>
-                <VideoHeader videoTitle={this.state.videoTitle} />
+                <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
                 <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.activePlayer === PlayerConstants.TWITCH && this.state.twitchPlayer} />
                 <ScheduleContainer />

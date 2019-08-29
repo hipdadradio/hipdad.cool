@@ -89,7 +89,7 @@ export class ArtistApplicationContainer extends React.Component {
 
     render() {
         return (
-            <div className="TextContainer" >
+            <div className="textContainer" >
                 <h2>Do a Live Session on Hip Dad Radio! <button className="formButton" onClick={this.startForm} hidden={this.state.started}>Tell us about your Band</button></h2>
                 <form onSubmit={this.handleSubmit} hidden={!this.state.started}>
                     <h4>Are you a muscian and want to perform LIVE on Hip Dad Radio? We'd love to have you on!</h4>

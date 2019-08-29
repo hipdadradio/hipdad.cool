@@ -68,7 +68,7 @@ export class HomeContainer extends React.Component {
             <div >
                 <h2>News</h2>
                 {this.state.visableNews.map(news => (
-                    <NewsContainer date={news.date} title={news.title} text={news.text} image={news.image} />
+                    <NewsContainer key={news.title} date={news.date} title={news.title} text={news.text} image={news.image} />
                 ))}
                 <br />
                 <button id="Newer News" onClick={this.handleNewerStories} hidden={!newerStoriesExist}>Newer Stories</button>

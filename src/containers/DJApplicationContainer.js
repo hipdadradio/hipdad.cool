@@ -89,7 +89,7 @@ export class DJApplicationContainer extends React.Component {
 
     render() {
         return (
-            <div className="TextContainer" >
+            <div className="textContainer" >
                 <h2>Be a Hip Dad DJ!<button className="formButton" onClick={this.startForm} hidden={this.state.started}>Tell us who you are</button></h2>
                 <form onSubmit={this.handleSubmit} hidden={!this.state.started}>
                     <h4>Want to be a Hip Dad Radio DJ? Tell us why!</h4>

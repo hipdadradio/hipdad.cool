@@ -11,7 +11,7 @@
   font-size: calc(10px + 1vmin);
 }
 
-.TextContainer {
+.textContainer {
   text-align: left;
   max-width: 640px;
   min-width: 640px;
@@ -147,4 +147,38 @@ textarea {
 
 .formButton {
   float: right;
+}
+
+.dd-wrapper {
+  float: right;
+  margin-inline: 8px;
+}
+
+.dd-wrapper:hover {
+  color: darkgoldenrod;
+}
+
+.dd-list {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  max-width: 150px;
+  position: absolute;
+  border-top: none;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background-color: #fff;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.dd-list-item {
+  width: 100%;
+  padding: 3px 1px;
+  line-height: 1.6rem;
+  cursor: default;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
