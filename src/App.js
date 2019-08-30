@@ -32,7 +32,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="Header">
+        <header className="Header" id="top">
           <Logo />
           <h1>Welcome to Hip Dad Radio!!</h1>
           <Logo />

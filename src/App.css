@@ -17,8 +17,14 @@
   min-width: 640px;
 }
 
+.imageArchiveContainer {
+  text-align: left;
+  max-width: 800px;
+  min-width: 400px;
+}
+
 .photoArchiveImg {
-  width: 100%
+  width: 100%;
 }
 
 .photoArchiveCoverImg {

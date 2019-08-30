@@ -34,27 +34,30 @@ export class PhotoPageContainer extends React.Component {
     }
 
     scrollToTop() {
-        window.scroll({
-            top: 0,
-            left: 0,
+        document.getElementById('top').scrollIntoView({
             behavior: 'smooth',
+            alignToTop: true
         });
     }
 
     handleSelection(selected) {
         this.scrollToTop();
-        this.setState({
-            selected: selected,
-            albumSelected: true
-        });
+        setTimeout((self) => {
+            self.setState({
+                selected: selected,
+                albumSelected: true
+            });
+        }, 500, this);
     }
 
     unSelect() {
         this.scrollToTop();
-        this.setState({
-            selected: { photos: [] },
-            albumSelected: false
-        })
+        setTimeout((self) => {
+            self.setState({
+                selected: { photos: [] },
+                albumSelected: false
+            });
+        }, 500, this);
     }
 
     render() {
@@ -66,7 +69,7 @@ export class PhotoPageContainer extends React.Component {
                         <PhotoArchiveListItem key={archive.title} imgSrc={archive.photos[0].imgSrc} title={archive.title} description={archive.description} author={archive.author} handleClick={this.handleSelection} photos={archive.photos} />
                     ))}
                 </div>
-                <div hidden={!this.state.albumSelected} class="textContainer">
+                <div hidden={!this.state.albumSelected} className="imageArchiveContainer">
                     <BackToArchiveButton handleClick={this.unSelect} />
                     <h3>{this.state.selected.title}</h3>
                     <h4>{this.state.selected.author}</h4>
