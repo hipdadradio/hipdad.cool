@@ -34,9 +34,10 @@ export class PhotoPageContainer extends React.Component {
     }
 
     scrollToTop() {
-        document.getElementById('top').scrollIntoView({
+        window.scroll({
+            top: 0,
+            left: 0,
             behavior: 'smooth',
-            alignToTop: true
         });
     }
 
