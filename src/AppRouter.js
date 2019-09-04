@@ -1,22 +1,23 @@
 import React from 'react';
 
-import { HomeContainer } from './containers/HomeContainer';
+import { NewsPageContainer } from './containers/NewsPageContainer';
 import { ShowContainer } from './containers/ShowContainer';
-import { AboutContainer } from './containers/AboutContainer';
+import { HomeContainer } from './containers/HomeContainer';
 import { PlayerContainer } from './containers/PlayerContainer';
 import { ContactContainer } from './containers/ContactContainer';
 import { PhotoPageContainer } from './containers/PhotoPageContainer';
+import { ShowsPage } from './pages/ShowsPage';
 
 import YTConstants from './data/YTConstants.json';
 
-// Home page
-export const Index = () => {
+// Home Page
+export const Home = () => {
   return <HomeContainer />;
 }
 
-// About Page
-export const About = () => {
-  return <AboutContainer />;
+// News page
+export const News = () => {
+  return <NewsPageContainer />;
 }
 
 export const Listen = () => {
@@ -43,4 +44,8 @@ export const ContactUs = () => {
 
 export const Photos = () => {
   return <PhotoPageContainer />
+}
+
+export const Shows = () => {
+  return <ShowsPage />
 }

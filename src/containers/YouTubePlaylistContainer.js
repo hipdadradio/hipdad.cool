@@ -2,6 +2,7 @@ import React from 'react';
 
 import { YouTubeVideoContainer } from './YouTubeVideoContainer';
 import { fetchPlaylistVideos } from '../util/YouTubeUtil';
+import { scrollToTop } from '../util/AppUtil';
 
 /*
     Container that holds a YouTube playlist
@@ -37,21 +38,17 @@ export class YouTubePlaylistContainer extends React.Component {
     }
 
     handleOlderEpisodes() {
-        this.scrollToTop();
-        this.updateVisibleEpisodes(this.state.page + 1)
+        scrollToTop();
+        setTimeout((self) => {
+            self.updateVisibleEpisodes(self.state.page + 1)
+        }, 200, this);
     }
 
     handleNewerEpisodes() {
-        this.scrollToTop();
-        this.updateVisibleEpisodes(this.state.page - 1)
-    }
-
-    scrollToTop() {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
+        scrollToTop();
+        setTimeout((self) => {
+            self.updateVisibleEpisodes(self.state.page - 1)
+        }, 200, this);
     }
 
     componentWillMount() {

@@ -12,11 +12,8 @@ ISSUES
     c. Number of listeners should never go negative
     d. Go Big / Go Small doesn't preserve the video state
 
-2. Shows pages
-    a. Navigating through episodes doesn't properly scroll to top of page
-
 3. News page
-    a. Navigating through news items doesn't properly scroll to top of page
+    a. Pagination isn't working properly...
 
 ####################################################################################################################
 

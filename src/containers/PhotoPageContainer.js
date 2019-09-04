@@ -4,6 +4,7 @@ import { PhotoArchiveListItem } from '../components/PhotoArchiveListItem'
 import { PhotoArchivePhoto } from '../components/PhotoArchivePhoto';
 import { fetchPhotoArchives, parsePhotoData } from '../util/DBUtil';
 import { BackToArchiveButton } from '../components/BackToArchiveButton';
+import { scrollToTop } from '../util/AppUtil';
 
 export class PhotoPageContainer extends React.Component {
     constructor(props) {
@@ -20,7 +21,6 @@ export class PhotoPageContainer extends React.Component {
         this.handleFetchedPhotos = this.handleFetchedPhotos.bind(this);
         this.handleSelection = this.handleSelection.bind(this);
         this.unSelect = this.unSelect.bind(this);
-        this.scrollToTop = this.scrollToTop.bind(this);
     }
 
     handleFetchedPhotos(photoData) {
@@ -33,16 +33,8 @@ export class PhotoPageContainer extends React.Component {
         fetchPhotoArchives(this.handleFetchedPhotos);
     }
 
-    scrollToTop() {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
-    }
-
     handleSelection(selected) {
-        this.scrollToTop();
+        scrollToTop();
         setTimeout((self) => {
             self.setState({
                 selected: selected,
@@ -52,7 +44,7 @@ export class PhotoPageContainer extends React.Component {
     }
 
     unSelect() {
-        this.scrollToTop();
+        scrollToTop();
         setTimeout((self) => {
             self.setState({
                 selected: { photos: [] },

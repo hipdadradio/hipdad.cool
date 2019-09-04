@@ -2,31 +2,9 @@ import React from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
-import { Index, About, HdrNewshour, HotSandwich, HipDadAds, Listen, ContactUs, Photos } from './AppRouter';
+import { News, Home, Listen, ContactUs, Photos, Shows } from './AppRouter';
 import { Logo } from './components/Logo';
 import { PlatformLinkContainer } from './containers/PlatformLinkContainer';
-import { Dropdown } from './components/Dropdown';
-
-const showsList = [
-  {
-    id: 0,
-    title: 'HDR Newshour',
-    selected: false,
-    jsx: <NavLink to="/hdrnewshour/" exact activeClassName="active">HDR Newshour</NavLink>
-  },
-  {
-    id: 1,
-    title: 'Hot Sandwich',
-    selected: false,
-    jsx: <NavLink to="/hotsandwich/" exact activeClassName="active">Hot Sandwich</NavLink>
-  },
-  {
-    id: 2,
-    title: "Hip Dad Ads",
-    selected: false,
-    jsx: <NavLink to="/hipdadads/" exact activeClassName="active">Hip Dad Ads</NavLink>
-  }
-]
 
 function App() {
   return (
@@ -40,22 +18,20 @@ function App() {
         <nav>
           <ul>
             <NavLink to="/" exact activeClassName="active">Home</NavLink>
-            <NavLink to="/about/" exact activeClassName="active">About</NavLink>
+            <NavLink to="/news/" exact activeClassName="active">News</NavLink>
             <NavLink to="/listen/" exact activeClassName="active">Listen</NavLink>
             <NavLink to="/contact/" exact activeClassName="active">Contact Us</NavLink>
-            <NavLink to="/photos/" exact activeClassName="actibe">Photos</NavLink>
-            <Dropdown title="Shows" list={showsList} />
+            <NavLink to="/photos/" exact activeClassName="active">Photos</NavLink>
+            <NavLink to="/shows/" exact activeClassName="active">Shows</NavLink>
           </ul>
         </nav>
         <Switch className="primary-content">
-          <Route path="/" exact component={Index} />
-          <Route path="/about/" component={About} />
+          <Route path="/" exact component={Home} />
+          <Route path="/news/" component={News} />
           <Route path="/listen/" component={Listen} />
-          <Route path="/hdrnewshour/" component={HdrNewshour} />
-          <Route path="/hotsandwich/" component={HotSandwich} />
-          <Route path="/hipdadads/" component={HipDadAds} />
           <Route path="/contact/" component={ContactUs} />
           <Route path="/photos/" component={Photos} />
+          <Route path="/shows/" component={Shows} />
         </Switch>
         <footer>
           <PlatformLinkContainer />
