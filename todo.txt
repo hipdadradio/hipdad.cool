@@ -19,10 +19,6 @@ ISSUES
 
 ENHANCEMENTS
 
-1. Get rid of "Home Page", replace with About page as website landing
-
-2. Create new page called "News" to house the existing content of the Home page
-
 3. Redo all CSS from scratch
 
 4. Get rid of "Shows" dropdown
