@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bd174d6407bfaa234bac8f35788b3d3e",
+    "revision": "2706b7160d12f1a0136fc47f4800284b",
     "url": "/hipdadradio/index.html"
   },
   {
-    "revision": "859230926c74376dd85f",
+    "revision": "80719683f225b5c7e512",
     "url": "/hipdadradio/static/css/main.d93a112f.chunk.css"
   },
   {
-    "revision": "373b72c7758b9eaab1d9",
-    "url": "/hipdadradio/static/js/2.72d681b7.chunk.js"
+    "revision": "b24c3b3c62d35aa100b0",
+    "url": "/hipdadradio/static/js/2.b6563db4.chunk.js"
   },
   {
-    "revision": "859230926c74376dd85f",
-    "url": "/hipdadradio/static/js/main.1c3622ff.chunk.js"
+    "revision": "80719683f225b5c7e512",
+    "url": "/hipdadradio/static/js/main.895d7cc1.chunk.js"
   },
   {
     "revision": "56fc3110fdd2dc0202ed",
