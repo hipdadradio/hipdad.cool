@@ -1,0 +1,19 @@
+TODO:
+
+9/12    Finish "Shows" page
+
+9/13    Fix issues with News page pagination
+
+9/16    Finish "Listen" page
+
+9/17    Start CSS redo
+
+9/18    Finish CSS redo
+
+9/19    Start documentation
+
+9/20    Finish documentation
+
+9/21    Get live on the internet. Prep for Keynote
+
+9/22    Keynote

@@ -10,7 +10,7 @@ ISSUES
     b. Make sure that scheduling shows still works / scheduled programming appears in the "Scheduled Shows" 
         area
     c. Number of listeners should never go negative
-    d. Go Big / Go Small doesn't preserve the video state
+    d. Go Big / Go Small doesn't preserve the video state (maybe get rid of go big, make the YouTube / Twitch windows larger by default)
 
 3. News page
     a. Pagination isn't working properly...
@@ -30,3 +30,13 @@ ENHANCEMENTS
 
 7. Add a button "listen now" which will instantiate a player component in a little box so that users can listen while browsing
     the rest of the website
+
+####################################################################################################################
+
+DOCUMENTATION
+
+1. Guides on how to add data to the Google Sheets
+
+2. Guides on how to schedule shows
+
+3. Guides on how to add photos to photo page
