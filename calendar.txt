@@ -2,7 +2,7 @@ TODO:
 
 9/12    Finish "Shows" page
 
-9/13    Fix issues with News page pagination
+9/13    Finish application reorganization
 
 9/16    Finish "Listen" page
 

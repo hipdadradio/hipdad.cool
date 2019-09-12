@@ -1,34 +1,68 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
-import { HdrNewshour, HotSandwich, HipDadAds } from '../AppRouter';
+import { ShowContainer } from '../containers/ShowContainer';
+import { ShowButton } from '../components/ShowButton';
+import { fetchShowsList, parseShows } from '../util/DBUtil';
 
 export class ShowsPage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showSelected: false,
+            title: '',
+            playlistId: '',
+            showList: []
+        };
+
+        this.handleFetchedShows = this.handleFetchedShows.bind(this);
+        this.showSelected = this.showSelected.bind(this);
+        this.clearSelection = this.clearSelection.bind(this);
+    }
+
+    handleFetchedShows(shows) {
+        let showList = parseShows(shows);
+
+        this.setState({ showList });
+    }
+
+    componentDidMount() {
+        fetchShowsList(this.handleFetchedShows);
+    }
+
+    showSelected(title, playlistId) {
+        this.setState({
+            showSelected: true,
+            title: title,
+            playlistId: playlistId
+        })
+    }
+
+    clearSelection() {
+        this.setState({
+            showSelected: false,
+            title: '',
+            playlistId: ''
+        })
+    }
+
     render() {
+        let showContainer = null;
+
+        if (this.state.showSelected) {
+            showContainer = (<div hidden={!this.state.showSelected}>
+                <ShowContainer backToShows={this.clearSelection} hidden={!this.showSelected} playlistId={this.state.playlistId} title={this.state.title} />
+            </div>);
+        }
+
         return (
             <>
-                <div className="textContainer">
-                    <button>
-                        <h3>HDR Newshour</h3>
-                        <img className="NewsImageContainer" src="https://bestlegalpractices.com/wp-content/uploads/2012/05/internet_lawyer-1.jpeg" alt="HDR_NEWSHOUR_IMG" />
-                    </button>
+                <div hidden={this.state.showSelected}>
+                    {this.state.showList.map(show => (
+                        <ShowButton handleClick={this.showSelected} key={show.title} title={show.title} imagesrc={show.imagesrc} desc={show.desc} playlistId={show.playlistId} />
+                    ))}
                 </div>
-                <Router>
-                    <div>
-                        <nav>
-                            <ul>
-                                <NavLink to="/shows/hdrnewshour/" exact activeClassName="active">HDR Newshour</NavLink>
-                                <NavLink to="/shows/hotsandwich/" exact activeClassName="active">Hot Sandwich</NavLink>
-                                <NavLink to="/shows/hipdadads/" exact activeClassName="active">Hip Dad Ads</NavLink>
-                            </ul>
-                        </nav>
-                        <Switch className="primary-content">
-                            <Route path="/shows/hdrnewshour/" component={HdrNewshour} />
-                            <Route path="/shows/hotsandwich/" component={HotSandwich} />
-                            <Route path="/shows/hipdadads/" component={HipDadAds} />
-                        </Switch>
-                    </div>
-                </Router >
+                {showContainer}
             </>
         );
     }

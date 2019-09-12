@@ -12,9 +12,6 @@ ISSUES
     c. Number of listeners should never go negative
     d. Go Big / Go Small doesn't preserve the video state (maybe get rid of go big, make the YouTube / Twitch windows larger by default)
 
-3. News page
-    a. Pagination isn't working properly...
-
 ####################################################################################################################
 
 ENHANCEMENTS
@@ -30,6 +27,10 @@ ENHANCEMENTS
 
 7. Add a button "listen now" which will instantiate a player component in a little box so that users can listen while browsing
     the rest of the website
+
+8. Downlaodble images on the website
+
+9. When you download things from HDR there are fake updates to update flash robo dj telling you to put in your credit card number
 
 ####################################################################################################################
 

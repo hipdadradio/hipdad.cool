@@ -6,6 +6,78 @@ import APIConstants from '../data/APIConstants.json'
 // Cache
 let dataCache = {};
 
+// ##########################################################
+// SHOWS
+// ##########################################################
+
+export const fetchShowsList = (handleFetchedShows) => {
+    if (dataCache[DBConstants.SHOWS] !== undefined) {
+        handleFetchedShows(dataCache[DBConstants.SHOWS]);
+    } else {
+        const Http = new XMLHttpRequest();
+
+        const url = buildShowsUrl();
+
+        Http.onload = function (e) {
+            if (Http.readyState === 4) {
+                if (Http.status === 200) {
+                    // If we have a successful request, we will parse the response
+                    let showsData = JSON.parse(Http.responseText);
+
+                    // Get rid of the first row of the sheet
+                    let shows = showsData.values.splice(1);
+
+                    // Assign response to dataCache[DBConstants.PHOTOS]
+                    dataCache[DBConstants.SHOWS] = shows;
+
+                    handleFetchedShows(shows);
+                } else {
+                    console.error(Http.statusText);
+                }
+            }
+        };
+
+        // Code to execute the http request
+        Http.open("GET", url, true);
+        Http.send();
+    }
+}
+
+/*
+    Function that will build the URL that is hit to fetch the shows
+ */
+const buildShowsUrl = () => {
+    let url = DBConstants.URL_ROOT;
+
+    url += "/" + DBConstants.values.shows.DB_ID;
+
+    url += "/values/" + DBConstants.values.shows.DB_VALUES;
+
+    url += "?key=" + APIConstants.KEY;
+
+    return url;
+}
+
+export const parseShows = (showData) => {
+    let shows = [];
+
+    showData.forEach(function (show) {
+        shows.push({
+            title: show[DBConstants.values.shows.COLUMN_HEADERS.TITLE],
+            desc: show[DBConstants.values.shows.COLUMN_HEADERS.DESCRIPTION],
+            imagesrc: show[DBConstants.values.shows.COLUMN_HEADERS.IMAGE_SRC],
+            playlistId: show[DBConstants.values.shows.COLUMN_HEADERS.PLAYLIST]
+        })
+    });
+
+    return shows;
+}
+
+
+// ##########################################################
+// PHOTOS
+// ##########################################################
+
 export const fetchPhotoArchives = (handleFetchedPhotos) => {
     if (dataCache[DBConstants.PHOTOS] !== undefined) {
         handleFetchedPhotos(dataCache[DBConstants.PHOTOS]);
@@ -36,9 +108,67 @@ export const fetchPhotoArchives = (handleFetchedPhotos) => {
         // Code to execute the http request
         Http.open("GET", url, true);
         Http.send();
-
     }
 }
+
+
+const buildPhotosUrl = () => {
+    let url = DBConstants.URL_ROOT;
+
+    url += "/" + DBConstants.values.photos.DB_ID;
+
+    url += "/values/" + DBConstants.values.photos.DB_VALUES;
+
+    url += "?key=" + APIConstants.KEY;
+
+    return url;
+}
+
+export const parsePhotoData = (photoData) => {
+    let archives = [];
+
+    var i = 0;
+
+    while (i < photoData.length) {
+        let currentRow = photoData[i];
+
+        let album = {
+            title: currentRow[DBConstants.values.photos.COLUMN_HEADERS.TITLE],
+            author: currentRow[DBConstants.values.photos.COLUMN_HEADERS.AUTHOR],
+            description: currentRow[DBConstants.values.photos.COLUMN_HEADERS.ALBUM_DESC]
+        };
+
+        let photos = [];
+
+        photos.push({
+            imgSrc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
+            desc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
+        });
+
+        i++;
+
+        while (i < photoData.length && !photoData[i][DBConstants.values.photos.COLUMN_HEADERS.TITLE]) {
+            let photoRow = photoData[i]
+
+            photos.push({
+                imgSrc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
+                desc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
+            })
+
+            i++;
+        }
+
+        album.photos = photos;
+
+        archives.push(album);
+    }
+
+    return archives.reverse();
+}
+
+// ##########################################################
+// DJS
+// ##########################################################
 
 export const fetchHipDadDjs = (handleFetchedDjs) => {
     if (dataCache[DBConstants.DJS] !== undefined) {
@@ -73,6 +203,39 @@ export const fetchHipDadDjs = (handleFetchedDjs) => {
     }
 }
 
+/*
+    Function that will build the URL that is hit to fetch the djs
+ */
+const buildDjsUrl = () => {
+    let url = DBConstants.URL_ROOT;
+
+    url += "/" + DBConstants.values.djs.DB_ID;
+
+    url += "/values/" + DBConstants.values.djs.DB_VALUES;
+
+    url += "?key=" + APIConstants.KEY;
+
+    return url;
+}
+
+export const parseDjs = (djsData) => {
+    let djs = [];
+
+    djsData.forEach(function (dj) {
+        djs.push({
+            name: dj[DBConstants.values.djs.COLUMN_HEADERS.NAME],
+            bio: dj[DBConstants.values.djs.COLUMN_HEADERS.BIO],
+            image: dj[DBConstants.values.djs.COLUMN_HEADERS.IMAGE],
+        })
+    });
+
+    return djs;
+}
+
+// ##########################################################
+// NEWS
+// ##########################################################
+
 export const fetchHipDadNews = (handleFetchedNews) => {
     if (dataCache[DBConstants.NEWS] !== undefined) {
         handleFetchedNews(dataCache[DBConstants.NEWS]);
@@ -105,6 +268,40 @@ export const fetchHipDadNews = (handleFetchedNews) => {
         Http.send();
     }
 }
+
+/*
+    Function that will build the URL that is hit to fetch the news
+ */
+const buildNewsUrl = () => {
+    let url = DBConstants.URL_ROOT;
+
+    url += "/" + DBConstants.values.news.DB_ID;
+
+    url += "/values/" + DBConstants.values.news.DB_VALUES;
+
+    url += "?key=" + APIConstants.KEY;
+
+    return url;
+}
+
+export const parseNewsData = (newsData) => {
+    let news = [];
+
+    newsData.forEach(function (newsItem) {
+        news.push({
+            date: newsItem[DBConstants.values.news.COLUMN_HEADERS.DATE],
+            title: newsItem[DBConstants.values.news.COLUMN_HEADERS.TITLE],
+            text: newsItem[DBConstants.values.news.COLUMN_HEADERS.TEXT],
+            image: newsItem[DBConstants.values.news.COLUMN_HEADERS.IMAGE]
+        })
+    });
+
+    return news.reverse();
+}
+
+// ##########################################################
+// SCHEDULE
+// ##########################################################
 
 /*
     Function that fetches and handles videos to play from google sheets
@@ -207,48 +404,6 @@ const buildScheduleURL = () => {
     return url;
 }
 
-/*
-    Function that will build the URL that is hit to fetch the news
- */
-const buildNewsUrl = () => {
-    let url = DBConstants.URL_ROOT;
-
-    url += "/" + DBConstants.values.news.DB_ID;
-
-    url += "/values/" + DBConstants.values.news.DB_VALUES;
-
-    url += "?key=" + APIConstants.KEY;
-
-    return url;
-}
-
-/*
-    Function that will build the URL that is hit to fetch the djs
- */
-const buildDjsUrl = () => {
-    let url = DBConstants.URL_ROOT;
-
-    url += "/" + DBConstants.values.djs.DB_ID;
-
-    url += "/values/" + DBConstants.values.djs.DB_VALUES;
-
-    url += "?key=" + APIConstants.KEY;
-
-    return url;
-}
-
-const buildPhotosUrl = () => {
-    let url = DBConstants.URL_ROOT;
-
-    url += "/" + DBConstants.values.photos.DB_ID;
-
-    url += "/values/" + DBConstants.values.photos.DB_VALUES;
-
-    url += "?key=" + APIConstants.KEY;
-
-    return url;
-}
-
 /* 
     Function that will take the array of arrays of scheduled shows and convert it to an array of objects
  */
@@ -266,77 +421,6 @@ export const parseScheduleData = (scheduleData) => {
     });
 
     return shows;
-}
-
-export const parsePhotoData = (photoData) => {
-    let archives = [];
-
-    var i = 0;
-
-    while (i < photoData.length) {
-        let currentRow = photoData[i];
-
-        let album = {
-            title: currentRow[DBConstants.values.photos.COLUMN_HEADERS.TITLE],
-            author: currentRow[DBConstants.values.photos.COLUMN_HEADERS.AUTHOR],
-            description: currentRow[DBConstants.values.photos.COLUMN_HEADERS.ALBUM_DESC]
-        };
-
-        let photos = [];
-
-        photos.push({
-            imgSrc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
-            desc: currentRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
-        });
-
-        i++;
-
-        while (i < photoData.length && !photoData[i][DBConstants.values.photos.COLUMN_HEADERS.TITLE]) {
-            let photoRow = photoData[i]
-
-            photos.push({
-                imgSrc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_SRC],
-                desc: photoRow[DBConstants.values.photos.COLUMN_HEADERS.IMAGE_DESC]
-            })
-
-            i++;
-        }
-
-        album.photos = photos;
-
-        archives.push(album);
-    }
-
-    return archives.reverse();
-}
-
-export const parseNewsData = (newsData) => {
-    let news = [];
-
-    newsData.forEach(function (newsItem) {
-        news.push({
-            date: newsItem[DBConstants.values.news.COLUMN_HEADERS.DATE],
-            title: newsItem[DBConstants.values.news.COLUMN_HEADERS.TITLE],
-            text: newsItem[DBConstants.values.news.COLUMN_HEADERS.TEXT],
-            image: newsItem[DBConstants.values.news.COLUMN_HEADERS.IMAGE]
-        })
-    });
-
-    return news.reverse();
-}
-
-export const parseDjs = (djsData) => {
-    let djs = [];
-
-    djsData.forEach(function (dj) {
-        djs.push({
-            name: dj[DBConstants.values.djs.COLUMN_HEADERS.NAME],
-            bio: dj[DBConstants.values.djs.COLUMN_HEADERS.BIO],
-            image: dj[DBConstants.values.djs.COLUMN_HEADERS.IMAGE],
-        })
-    });
-
-    return djs;
 }
 
 export const formatTimeSpanString = (props) => {

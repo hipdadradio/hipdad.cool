@@ -40,10 +40,21 @@
                 "IMAGE_DESC": 3,
                 "IMAGE_SRC": 4
             }
+        },
+        "shows": {
+            "DB_VALUES": "A%3AD",
+            "DB_ID": "1dExgPCi_xTJdrW3_xJFXuoyTM5lI-y8EQq8Hg1GgDKk",
+            "COLUMN_HEADERS": {
+                "TITLE": 0,
+                "DESCRIPTION": 1,
+                "PLAYLIST": 2,
+                "IMAGE_SRC": 3
+            }
         }
     },
     "SCHEDULE": "SCHEDULE",
     "NEWS": "NEWS",
     "DJS": "DJS",
-    "PHOTOS": "PHOTOS"
+    "PHOTOS": "PHOTOS",
+    "SHOWS": "SHOWS"
 }
