@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { PhotoArchiveListItem } from '../components/PhotoArchiveListItem'
-import { PhotoArchivePhoto } from '../components/PhotoArchivePhoto';
+import { PhotoArchiveListItem } from '../components/photoComponents/PhotoArchiveListItem'
+import { PhotoArchivePhoto } from '../components/photoComponents/PhotoArchivePhoto';
 import { fetchPhotoArchives, parsePhotoData } from '../util/DBUtil';
-import { BackToArchiveButton } from '../components/BackToArchiveButton';
+import { BackToArchiveButton } from '../components/photoComponents/BackToArchiveButton';
 import { scrollToTop } from '../util/AppUtil';
 
-export class PhotoPageContainer extends React.Component {
+export class PhotoPage extends React.Component {
     constructor(props) {
         super(props);
 

@@ -177,7 +177,7 @@ textarea {
 }
 
 .formButton {
-  float: right;
+  min-width: 640px;
 }
 
 .dd-wrapper {

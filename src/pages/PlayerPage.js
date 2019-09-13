@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Player } from '../components/Player';
+import { Player } from '../components/player/Player';
 
 /*
     Container that holds the Player
  */
-export class PlayerContainer extends React.Component {
+export class PlayerPage extends React.Component {
     render() {
         return (
             <div>

@@ -3,8 +3,8 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import { News, Home, Listen, ContactUs, Photos, Shows } from './AppRouter';
-import { Logo } from './components/Logo';
-import { PlatformLinkContainer } from './containers/PlatformLinkContainer';
+import { Logo } from './components/app/Logo';
+import { PlatformLinkContainer } from './containers/app/PlatformLinkContainer';
 
 function App() {
   return (

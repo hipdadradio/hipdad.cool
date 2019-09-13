@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { fetchHipDadDjs, parseDjs } from '../util/DBUtil';
-import { DJ } from '../components/DJ';
+import { fetchHipDadDjs, parseDjs } from '../../util/DBUtil';
+import { DJ } from '../../components/about/DJ';
 
 export class DJContainer extends React.Component {
     constructor(props) {

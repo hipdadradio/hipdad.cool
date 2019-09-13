@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ShowContainer } from '../containers/ShowContainer';
-import { ShowButton } from '../components/ShowButton';
+import { ShowContainer } from '../containers/shows/ShowContainer';
+import { ShowButton } from '../components/shows/ShowButton';
 import { fetchShowsList, parseShows } from '../util/DBUtil';
 
 export class ShowsPage extends React.Component {

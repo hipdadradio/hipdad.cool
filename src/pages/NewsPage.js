@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { fetchHipDadNews, parseNewsData } from '../util/DBUtil';
-import { NewsContainer } from './NewsContainer';
+import { NewsContainer } from '../containers/news/NewsContainer';
 import { scrollToTop } from '../util/AppUtil';
 /*
     Container that holds the News page
  */
-export class NewsPageContainer extends React.Component {
+export class NewsPage extends React.Component {
     constructor(props) {
         super(props);
 

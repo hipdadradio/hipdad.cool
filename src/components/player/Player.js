@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { ScheduleContainer } from '../containers/ScheduleContainer';
-import { YouTubePlayer } from '../components/YouTubePlayer';
-import { TwitchPlayer } from '../components/TwitchPlayer';
-import { checkForScheduledShow } from '../util/DBUtil';
-import { fetchPlaylistVideos } from '../util/YouTubeUtil';
-import { shuffle } from '../util/DataUtil';
+import { ScheduleContainer } from '../../containers/shows/ScheduleContainer';
+import { YouTubePlayer } from './YouTubePlayer';
+import { TwitchPlayer } from './TwitchPlayer';
+import { checkForScheduledShow } from '../../util/DBUtil';
+import { fetchPlaylistVideos } from '../../util/YouTubeUtil';
+import { shuffle } from '../../util/DataUtil';
 import { VideoHeader } from './VideoHeader';
 
-import PlayerConstants from '../data/PlayerConstants.json';
-import YTConstants from '../data/YTConstants.json';
+import PlayerConstants from '../../data/PlayerConstants.json';
+import YTConstants from '../../data/YTConstants.json';
 
 const Twitch = window.Twitch;
 

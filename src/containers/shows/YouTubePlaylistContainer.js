@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { YouTubeVideoContainer } from './YouTubeVideoContainer';
-import { fetchPlaylistVideos } from '../util/YouTubeUtil';
-import { scrollToTop } from '../util/AppUtil';
+import { fetchPlaylistVideos } from '../../util/YouTubeUtil';
+import { scrollToTop } from '../../util/AppUtil';
 
 /*
     Container that holds a YouTube playlist

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { AboutContainer } from './AboutContainer';
+import { AboutContainer } from '../containers/about/AboutContainer';
 /*
     Container that holds the Home page
  */
-export class HomeContainer extends React.Component {
+export class HomePage extends React.Component {
     render() {
         return (
             <>

@@ -1,32 +1,32 @@
 import React from 'react';
 
-import { NewsPageContainer } from './containers/NewsPageContainer';
-import { HomeContainer } from './containers/HomeContainer';
-import { PlayerContainer } from './containers/PlayerContainer';
-import { ContactContainer } from './containers/ContactContainer';
-import { PhotoPageContainer } from './containers/PhotoPageContainer';
+import { NewsPage } from './pages/NewsPage';
+import { HomePage } from './pages/HomePage';
+import { PlayerPage } from './pages/PlayerPage';
+import { ContactPage } from './pages/ContactPage';
+import { PhotoPage } from './pages/PhotoPage';
 import { ShowsPage } from './pages/ShowsPage';
 
 // Home Page
 export const Home = () => {
-  return <HomeContainer />;
+  return <HomePage />;
 }
 
 // News page
 export const News = () => {
-  return <NewsPageContainer />;
+  return <NewsPage />;
 }
 
 export const Listen = () => {
-  return <PlayerContainer />;
+  return <PlayerPage />;
 }
 
 export const ContactUs = () => {
-  return <ContactContainer />
+  return <ContactPage />
 }
 
 export const Photos = () => {
-  return <PhotoPageContainer />
+  return <PhotoPage />
 }
 
 export const Shows = () => {

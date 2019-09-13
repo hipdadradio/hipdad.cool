@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { fetchSchedule, parseScheduleData } from '../util/DBUtil';
-import { ScheduledProgramDescriptor } from '../components/ScheduledProgramDescriptor';
+import { fetchSchedule, parseScheduleData } from '../../util/DBUtil';
+import { ScheduledProgramDescriptor } from '../../components/player/ScheduledProgramDescriptor';
 
 export class ScheduleContainer extends React.Component {
     constructor(props) {
