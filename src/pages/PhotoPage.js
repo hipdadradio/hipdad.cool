@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { PhotoArchiveListItem } from '../components/photoComponents/PhotoArchiveListItem'
-import { PhotoArchivePhoto } from '../components/photoComponents/PhotoArchivePhoto';
+import { PhotoArchiveListItem } from '../components/photo/PhotoArchiveListItem'
+import { PhotoArchivePhoto } from '../components/photo/PhotoArchivePhoto';
 import { fetchPhotoArchives, parsePhotoData } from '../util/DBUtil';
-import { BackToArchiveButton } from '../components/photoComponents/BackToArchiveButton';
+import { BackToArchiveButton } from '../components/photo/BackToArchiveButton';
 import { scrollToTop } from '../util/AppUtil';
 
 export class PhotoPage extends React.Component {
