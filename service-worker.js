@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/hipdadradio/precache-manifest.9d71707bf8d1f78beaa5e2970df64cb1.js"
+  "/hipdadradio/precache-manifest.d532cd18fec6565ce5699cfedf6858f3.js"
 );
 
 self.addEventListener('message', (event) => {
