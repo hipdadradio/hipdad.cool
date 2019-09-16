@@ -143,7 +143,7 @@ export class Player extends React.Component {
     startBlockedYouTubeVideoChecker() {
         setInterval(
             function (self) {
-                self.setState({ numberOfListeners: self.state.numberOfListeners + (Math.round(Math.random() * 2 - 1)) })
+                self.setState({ numberOfListeners: Math.abs(self.state.numberOfListeners + (Math.round(Math.random() * 2 - 1))) })
 
                 // If we're playing the playlist check the state of the player
                 if (self.state.playing === PlayerConstants.HDR) {
