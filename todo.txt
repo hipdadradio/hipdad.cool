@@ -4,22 +4,11 @@ TODO:
 
 ISSUES
 
-1. Listen page issues
-    a. User navigates to player screen while Twitch stream is live, the youtube player will start playing
-        and then fade out
-    b. Make sure that scheduling shows still works / scheduled programming appears in the "Scheduled Shows" 
-        area
-    c. Number of listeners should never go negative
-    d. Go Big / Go Small doesn't preserve the video state (maybe get rid of go big, make the YouTube / Twitch windows larger by default)
-
 ####################################################################################################################
 
 ENHANCEMENTS
 
 3. Redo all CSS from scratch
-
-4. Get rid of "Shows" dropdown
-    a. Replace with "Shows" page which will contain blocks for each show (data pulled from Google Sheets)
 
 5. Phony pop-up ads
 

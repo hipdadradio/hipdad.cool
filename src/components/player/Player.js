@@ -28,7 +28,7 @@ export class Player extends React.Component {
         super(props);
 
         this.state = {
-            activePlayer: "",
+            activePlayer: PlayerConstants.TWITCH,
             playing: "",
             videoTitle: "...",
             numberOfListeners: Math.round(Math.random() * 100),
@@ -72,7 +72,7 @@ export class Player extends React.Component {
 
             self.setState({
                 activePlayer: PlayerConstants.TWITCH,
-                videoTitle: "Hip Dad Radio: LIVE"
+                videoTitle: "Hip Dad Radio LIVE"
             });
 
             if (self.state.youTubePlayer) {
@@ -230,7 +230,7 @@ export class Player extends React.Component {
             <>
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
                 <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer} />
-                <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.activePlayer === PlayerConstants.TWITCH && this.state.twitchPlayer} />
+                <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <ScheduleContainer />
             </>
         )

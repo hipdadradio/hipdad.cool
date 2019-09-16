@@ -10,10 +10,11 @@ export class YouTubePlayer extends React.Component {
                 height: '360',
                 width: '640',
                 playerVars: {
-                    controls: 0
+                    controls: 0,
+                    autoplay: 0,
+                    modestbranding: 1
                 }
-            },
-            isBig: false
+            }
         };
     }
 
