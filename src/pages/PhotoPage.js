@@ -35,22 +35,32 @@ export class PhotoPage extends React.Component {
 
     handleSelection(selected) {
         scrollToTop();
-        setTimeout((self) => {
-            self.setState({
-                selected: selected,
-                albumSelected: true
-            });
-        }, 500, this);
+        // setTimeout((self) => {
+        //     self.setState({
+        //         selected: selected,
+        //         albumSelected: true
+        //     });
+        // }, 500, this);
+
+        this.setState({
+            selected: selected,
+            albumSelected: true
+        });
     }
 
     unSelect() {
         scrollToTop();
-        setTimeout((self) => {
-            self.setState({
-                selected: { photos: [] },
-                albumSelected: false
-            });
-        }, 500, this);
+        // setTimeout((self) => {
+        //     self.setState({
+        //         selected: { photos: [] },
+        //         albumSelected: false
+        //     });
+        // }, 500, this);
+
+        this.setState({
+            selected: { photos: [] },
+            albumSelected: false
+        });
     }
 
     render() {

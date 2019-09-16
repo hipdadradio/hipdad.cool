@@ -52,14 +52,6 @@ export class NewsPage extends React.Component {
         }, 500, this);
     }
 
-    scrollToTop() {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-        });
-    }
-
     componentDidMount() {
         fetchHipDadNews(this.handleFetchedNews);
     }
