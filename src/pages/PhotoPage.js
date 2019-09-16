@@ -67,7 +67,7 @@ export class PhotoPage extends React.Component {
                     <h3>{this.state.selected.title}</h3>
                     <h4>{this.state.selected.author}</h4>
                     {this.state.selected.photos.map(photo => (
-                        <PhotoArchivePhoto imgSrc={photo.imgSrc} desc={photo.desc} />
+                        <PhotoArchivePhoto key={photo.imgSrc} imgSrc={photo.imgSrc} desc={photo.desc} />
                     ))}
                     <BackToArchiveButton handleClick={this.unSelect} />
                 </div>

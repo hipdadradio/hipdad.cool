@@ -115,7 +115,7 @@ export class ArtistApplicationContainer extends React.Component {
                         </p>
                         <p hidden={!(this.state.email && this.state.name && this.state.bandName)}>
                             <label htmlFor="artistWebsite">
-                                <span>Bandcamp: </span>
+                                <span>Website: </span>
                             </label>
                             <input id="artistWebsite" name="website" value={this.state.website} onChange={this.handleWebsiteChange} />
                         </p>

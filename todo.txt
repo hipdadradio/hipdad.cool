@@ -21,6 +21,8 @@ ENHANCEMENTS
 
 9. When you download things from HDR there are fake updates to update flash robo dj telling you to put in your credit card number
 
+10. When using the datacache, store processed values inside
+
 ####################################################################################################################
 
 DOCUMENTATION
