@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchHipDadNews, parseNewsData } from '../util/DBUtil';
+import { fetchHipDadNews } from '../util/DBUtil';
 import { NewsContainer } from '../containers/news/NewsContainer';
 import { scrollToTop } from '../util/AppUtil';
 /*
@@ -23,11 +23,9 @@ export class NewsPage extends React.Component {
     }
 
     handleFetchedNews(news) {
-        let parsedNews = parseNewsData(news);
-
         this.setState({
-            news: parsedNews,
-            visableNews: parsedNews.slice(0, 10)
+            news: news,
+            visableNews: news.slice(0, 10)
         });
     }
 
@@ -63,12 +61,14 @@ export class NewsPage extends React.Component {
         return (
             <div >
                 <h2>News</h2>
-                {this.state.visableNews.map(news => (
-                    <NewsContainer key={news.title} date={news.date} title={news.title} text={news.text} image={news.image} />
-                ))}
-                <br />
-                <button id="Newer News" onClick={this.handleNewerStories} hidden={!newerStoriesExist}>Newer Stories</button>
-                <button id="Older News" onClick={this.handleOlderStories} hidden={!olderStoriesExist}>Older Stories</button>
+                <div className="newsContainer">
+                    {this.state.visableNews.map(news => (
+                        <NewsContainer key={news.title} date={news.date} title={news.title} text={news.text} image={news.image} />
+                    ))}
+                    <br />
+                    <button id="Newer News" onClick={this.handleNewerStories} hidden={!newerStoriesExist}>Newer Stories</button>
+                    <button id="Older News" onClick={this.handleOlderStories} hidden={!olderStoriesExist}>Older Stories</button>
+                </div>
             </div >
         );
     }

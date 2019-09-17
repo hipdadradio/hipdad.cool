@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchSchedule, parseScheduleData } from '../../util/DBUtil';
+import { fetchSchedule } from '../../util/DBUtil';
 import { ScheduledProgramDescriptor } from '../../components/player/ScheduledProgramDescriptor';
 
 export class ScheduleContainer extends React.Component {
@@ -20,13 +20,11 @@ export class ScheduleContainer extends React.Component {
     }
 
     populateSchedule(schedule) {
-        let scheduleData = parseScheduleData(schedule);
+        schedule = this.filterSchedule(schedule);
 
-        scheduleData = this.filterSchedule(scheduleData);
-
-        if (scheduleData.length > 0) {
+        if (schedule.length > 0) {
             this.setState({
-                schedule: scheduleData,
+                schedule: schedule,
                 upcomingShows: true
             });
         }

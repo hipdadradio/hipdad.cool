@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PhotoArchiveListItem } from '../components/photo/PhotoArchiveListItem'
 import { PhotoArchivePhoto } from '../components/photo/PhotoArchivePhoto';
-import { fetchPhotoArchives, parsePhotoData } from '../util/DBUtil';
+import { fetchPhotoArchives } from '../util/DBUtil';
 import { BackToArchiveButton } from '../components/photo/BackToArchiveButton';
 import { scrollToTop } from '../util/AppUtil';
 
@@ -23,10 +23,8 @@ export class PhotoPage extends React.Component {
         this.unSelect = this.unSelect.bind(this);
     }
 
-    handleFetchedPhotos(photoData) {
-        let archives = parsePhotoData(photoData);
-
-        this.setState({ archives });
+    handleFetchedPhotos(archives) {
+        this.setState({ archives: archives });
     }
 
     componentDidMount() {

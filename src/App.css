@@ -20,20 +20,22 @@
   font-size: calc(10px + 1vmin);
 }
 
+.pageContainer {
+  max-width: 90vw
+}
+
 .textContainer {
   text-align: left;
-  max-width: 640px;
-  min-width: 640px;
+  max-width: 100%;
 }
 
 .imageArchiveContainer {
   text-align: left;
-  max-width: 800px;
-  min-width: 400px;
+  width: 80vw;
 }
 
 .photoArchiveImg {
-  width: 100%;
+  width: 80vw;
 }
 
 .photoArchiveCoverImg {
@@ -41,64 +43,60 @@
   opacity: 0.7;
 }
 
-.DJContainer {
-  text-align: left;
-  max-width: 250px;
-  min-width: 250px;
+.djsContainer {
+  max-width: 900px;
 }
 
-.showBox {
-    min-width: 640px;
+.djContainer {
+  text-align: left;
 }
 
 .showImageContainer {
-  max-height: 200px;
-  min-height: 200px;
-  max-width: 200px;
-  min-width: 200px;
-  margin-inline-start: 1em;
+  width: 20vw;
+  height: 20vw;
   margin-inline-end: 1em;
-  margin-bottom: 1em;
   align-self: center;
   float: left;
   opacity: 0.7;
 }
 
-.NewsImageContainer {
-  max-height: 200px;
-  min-height: 200px;
-  max-width: 200px;
-  min-width: 200px;
+.showsContainer {
+  max-width: 900px;
+}
+
+.newsContainer {
+  max-width: 900px;
+}
+
+
+
+.newsImageContainer {
+  min-height: 20vw;
+  max-height: 20vw;
+  min-width: 20vw;
+  max-width: 20vw;
+  margin-inline-end: 1em;
+  align-self: center;
+}
+
+.logoImageContainer {
+  width: 50px;
+  height: 50px;
   margin-inline-start: 1em;
   margin-inline-end: 1em;
   margin-top: 1em;
   align-self: center;
 }
 
-.LogoImageContainer {
-  max-height: 50px;
-  min-height: 50px;
-  max-width: 50px;
-  min-width: 50px;
-  margin-inline-start: 1em;
-  margin-inline-end: 1em;
-  margin-top: 1em;
-  align-self: center;
-}
-
-.ImageLinks:hover {
+.imageLinks:hover {
   background-color: transparent;
 }
 
-.GrowingContainer {
+.growingContainer {
   display: inline-flex;
 }
 
-.DJsContainer {
-  display: inline-flex;
-}
-
-.Header {
+.appHeader {
   display: flex;
   margin-top: 0.5em;
 }
@@ -190,40 +188,5 @@ textarea {
 }
 
 .formButton {
-  min-width: 640px;
+  width: 80%;
 }
-
-/* .dd-wrapper {
-  float: right;
-  margin-inline-start: 1em;
-  margin-inline-end: 1em;
-}
-
-.dd-wrapper:hover {
-  color: darkgoldenrod;
-}
-
-.dd-list {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  max-width: 150px;
-  position: absolute;
-  border-top: none;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  background-color: #fff;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-.dd-list-item {
-  width: 100%;
-  padding: 3px 1px;
-  line-height: 1.6rem;
-  cursor: default;
-  display: inline-block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-} */

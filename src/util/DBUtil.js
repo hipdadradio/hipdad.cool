@@ -28,9 +28,9 @@ export const fetchShowsList = (handleFetchedShows) => {
                     let shows = showsData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.PHOTOS]
-                    dataCache[DBConstants.SHOWS] = shows;
+                    dataCache[DBConstants.SHOWS] = parseShows(shows);
 
-                    handleFetchedShows(shows);
+                    handleFetchedShows(dataCache[DBConstants.SHOWS]);
                 } else {
                     console.error(Http.statusText);
                 }
@@ -58,7 +58,7 @@ const buildShowsUrl = () => {
     return url;
 }
 
-export const parseShows = (showData) => {
+const parseShows = (showData) => {
     let shows = [];
 
     showData.forEach(function (show) {
@@ -96,9 +96,9 @@ export const fetchPhotoArchives = (handleFetchedPhotos) => {
                     let photos = photoData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.PHOTOS]
-                    dataCache[DBConstants.PHOTOS] = photos;
+                    dataCache[DBConstants.PHOTOS] = parsePhotoData(photos);
 
-                    handleFetchedPhotos(photos);
+                    handleFetchedPhotos(dataCache[DBConstants.PHOTOS]);
                 } else {
                     console.error(Http.statusText);
                 }
@@ -124,7 +124,7 @@ const buildPhotosUrl = () => {
     return url;
 }
 
-export const parsePhotoData = (photoData) => {
+const parsePhotoData = (photoData) => {
     let archives = [];
 
     var i = 0;
@@ -188,9 +188,9 @@ export const fetchHipDadDjs = (handleFetchedDjs) => {
                     let djs = djsData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.DJS]
-                    dataCache[DBConstants.DJS] = djs;
+                    dataCache[DBConstants.DJS] = parseDjs(djs);
 
-                    handleFetchedDjs(djs);
+                    handleFetchedDjs(dataCache[DBConstants.DJS]);
                 } else {
                     console.error(Http.statusText);
                 }
@@ -218,7 +218,7 @@ const buildDjsUrl = () => {
     return url;
 }
 
-export const parseDjs = (djsData) => {
+const parseDjs = (djsData) => {
     let djs = [];
 
     djsData.forEach(function (dj) {
@@ -254,9 +254,9 @@ export const fetchHipDadNews = (handleFetchedNews) => {
                     let news = newsData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.SCHEDULE]
-                    dataCache[DBConstants.NEWS] = news;
+                    dataCache[DBConstants.NEWS] = parseNewsData(news);
 
-                    handleFetchedNews(news);
+                    handleFetchedNews(dataCache[DBConstants.NEWS]);
                 } else {
                     console.error(Http.statusText);
                 }
@@ -284,7 +284,7 @@ const buildNewsUrl = () => {
     return url;
 }
 
-export const parseNewsData = (newsData) => {
+const parseNewsData = (newsData) => {
     let news = [];
 
     newsData.forEach(function (newsItem) {
@@ -375,7 +375,7 @@ export const fetchSchedule = (callback) => {
                     let scheduledShows = scheduleData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.SCHEDULE]
-                    dataCache[DBConstants.SCHEDULE] = scheduledShows;
+                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(scheduledShows);
                     callback(dataCache[DBConstants.SCHEDULE]);
                 } else {
                     console.error(Http.statusText);
@@ -407,7 +407,7 @@ const buildScheduleURL = () => {
 /* 
     Function that will take the array of arrays of scheduled shows and convert it to an array of objects
  */
-export const parseScheduleData = (scheduleData) => {
+const parseScheduleData = (scheduleData) => {
     let shows = [];
 
     // Iterate over the scheduleData and turn each array entry into an object

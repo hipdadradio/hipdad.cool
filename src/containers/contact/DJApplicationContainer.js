@@ -117,7 +117,7 @@ export class DJApplicationContainer extends React.Component {
                             <label htmlFor="applicationWhy">
                                 <span>Why HDR: </span>
                             </label>
-                            <textarea id="applicationWhy" name="why" value={this.state.why} onChange={this.handleWhyChange} rows="3" cols="40" />
+                            <input id="applicationWhy" name="why" value={this.state.why} onChange={this.handleWhyChange} />
                         </p>
                     </section>
                     <button id="SubmitButton" type='submit' hidden={!(this.state.why && this.state.email && this.state.lastName && this.state.firstName)}>Welcome, DJ {this.state.firstName}</button>

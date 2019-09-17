@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fetchHipDadDjs, parseDjs } from '../../util/DBUtil';
+import { fetchHipDadDjs } from '../../util/DBUtil';
 import { DJ } from '../../components/about/DJ';
 
 export class DJContainer extends React.Component {
@@ -15,11 +15,7 @@ export class DJContainer extends React.Component {
     }
 
     handleFetchedDjs(djs) {
-        let parsedDjs = parseDjs(djs);
-
-        this.setState({
-            djs: parsedDjs
-        });
+        this.setState({ djs });
     }
 
     componentDidMount() {
@@ -30,9 +26,11 @@ export class DJContainer extends React.Component {
         return (
             <div>
                 <h3>Meet the DJs!</h3>
-                {this.state.djs.map(dj => (
-                    <DJ name={dj.name} bio={dj.bio} image={dj.image} key={dj.name} />
-                ))}
+                <div className="djsContainer">
+                    {this.state.djs.map(dj => (
+                        <DJ name={dj.name} bio={dj.bio} image={dj.image} key={dj.name} />
+                    ))}
+                </div>
             </div>
         );
     }

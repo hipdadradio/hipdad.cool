@@ -14,7 +14,7 @@ export class ShowButton extends React.Component {
     render() {
         return (
             <>
-                <button className="showBox" onClick={this.handleClick}>
+                <button onClick={this.handleClick}>
                     <h3>{this.props.title}</h3>
                     <img className="showImageContainer" src={this.props.imagesrc} alt={this.props.title} />
                     <p className="textContainer">{this.props.desc}</p>

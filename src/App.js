@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="Header" id="top">
+        <header className="appHeader" id="top">
           <Logo />
           <h1>Welcome to Hip Dad Radio!!</h1>
           <Logo />
@@ -25,14 +25,16 @@ function App() {
             <NavLink to="/shows/" exact activeClassName="active">Shows</NavLink>
           </ul>
         </nav>
-        <Switch className="primary-content">
-          <Route path="/" exact component={Home} />
-          <Route path="/news/" component={News} />
-          <Route path="/listen/" component={Listen} />
-          <Route path="/contact/" component={ContactUs} />
-          <Route path="/photos/" component={Photos} />
-          <Route path="/shows/" component={Shows} />
-        </Switch>
+        <div className="pageContainer">
+          <Switch className="primary-content">
+            <Route path="/" exact component={Home} />
+            <Route path="/news/" component={News} />
+            <Route path="/listen/" component={Listen} />
+            <Route path="/contact/" component={ContactUs} />
+            <Route path="/photos/" component={Photos} />
+            <Route path="/shows/" component={Shows} />
+          </Switch>
+        </div>
         <footer>
           <PlatformLinkContainer />
         </footer>

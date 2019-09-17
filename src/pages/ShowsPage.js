@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ShowContainer } from '../containers/shows/ShowContainer';
 import { ShowButton } from '../components/shows/ShowButton';
-import { fetchShowsList, parseShows } from '../util/DBUtil';
+import { fetchShowsList } from '../util/DBUtil';
 
 export class ShowsPage extends React.Component {
     constructor(props) {
@@ -20,9 +20,7 @@ export class ShowsPage extends React.Component {
         this.clearSelection = this.clearSelection.bind(this);
     }
 
-    handleFetchedShows(shows) {
-        let showList = parseShows(shows);
-
+    handleFetchedShows(showList) {
         this.setState({ showList });
     }
 
@@ -56,14 +54,14 @@ export class ShowsPage extends React.Component {
         }
 
         return (
-            <>
+            <div className="showsContainer">
                 <div hidden={this.state.showSelected}>
                     {this.state.showList.map(show => (
                         <ShowButton handleClick={this.showSelected} key={show.title} title={show.title} imagesrc={show.imagesrc} desc={show.desc} playlistId={show.playlistId} />
                     ))}
                 </div>
                 {showContainer}
-            </>
+            </div>
         );
     }
 }
