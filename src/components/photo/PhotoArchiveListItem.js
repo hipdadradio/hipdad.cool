@@ -21,7 +21,7 @@ export class PhotoArchiveListItem extends React.Component {
             <div className="textContainer">
                 <button onClick={this.handleClick}>
                     <h3>{this.props.title}</h3>
-                    <h4>{this.props.author}</h4>
+                    <h4>{this.props.author} ({this.props.count} photos)</h4>
                     <img className="photoArchiveCoverImg" src={this.props.imgSrc} alt={this.props.title} />
                     <p>{this.props.description}</p>
                 </button>

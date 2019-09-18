@@ -33,12 +33,6 @@ export class PhotoPage extends React.Component {
 
     handleSelection(selected) {
         scrollToTop();
-        // setTimeout((self) => {
-        //     self.setState({
-        //         selected: selected,
-        //         albumSelected: true
-        //     });
-        // }, 500, this);
 
         this.setState({
             selected: selected,
@@ -48,12 +42,6 @@ export class PhotoPage extends React.Component {
 
     unSelect() {
         scrollToTop();
-        // setTimeout((self) => {
-        //     self.setState({
-        //         selected: { photos: [] },
-        //         albumSelected: false
-        //     });
-        // }, 500, this);
 
         this.setState({
             selected: { photos: [] },
@@ -67,7 +55,7 @@ export class PhotoPage extends React.Component {
                 <h2>Photo Archive</h2>
                 <div hidden={this.state.albumSelected}>
                     {this.state.archives.map(archive => (
-                        <PhotoArchiveListItem key={archive.title} imgSrc={archive.photos[0].imgSrc} title={archive.title} description={archive.description} author={archive.author} handleClick={this.handleSelection} photos={archive.photos} />
+                        <PhotoArchiveListItem key={archive.title} count={archive.photos.length} imgSrc={archive.photos[0].imgSrc} title={archive.title} description={archive.description} author={archive.author} handleClick={this.handleSelection} photos={archive.photos} />
                     ))}
                 </div>
                 <div hidden={!this.state.albumSelected} className="imageArchiveContainer">
