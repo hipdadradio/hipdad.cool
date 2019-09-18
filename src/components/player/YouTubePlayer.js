@@ -1,14 +1,16 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 
+import { getMaxVideoHeight, getMaxVideoWidth } from '../../util/AppUtil';
+
 export class YouTubePlayer extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             opts: {
-                height: '360',
-                width: '640',
+                height: getMaxVideoHeight(),
+                width: getMaxVideoWidth(),
                 playerVars: {
                     controls: 0,
                     autoplay: 0,
