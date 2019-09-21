@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/hipdadradio/static/css/main.5bdf4d38.chunk.css",
+    "main.css": "/hipdadradio/static/css/main.0882e1b6.chunk.css",
     "main.js": "/hipdadradio/static/js/main.36b27e52.chunk.js",
     "main.js.map": "/hipdadradio/static/js/main.36b27e52.chunk.js.map",
     "runtime~main.js": "/hipdadradio/static/js/runtime~main.581e4ea1.js",
@@ -8,9 +8,9 @@
     "static/js/2.79d09233.chunk.js": "/hipdadradio/static/js/2.79d09233.chunk.js",
     "static/js/2.79d09233.chunk.js.map": "/hipdadradio/static/js/2.79d09233.chunk.js.map",
     "index.html": "/hipdadradio/index.html",
-    "precache-manifest.468510f91f12223bdad362adf6f5a69a.js": "/hipdadradio/precache-manifest.468510f91f12223bdad362adf6f5a69a.js",
+    "precache-manifest.f9de823693870b4c1281eecde826dccc.js": "/hipdadradio/precache-manifest.f9de823693870b4c1281eecde826dccc.js",
     "service-worker.js": "/hipdadradio/service-worker.js",
-    "static/css/main.5bdf4d38.chunk.css.map": "/hipdadradio/static/css/main.5bdf4d38.chunk.css.map",
+    "static/css/main.0882e1b6.chunk.css.map": "/hipdadradio/static/css/main.0882e1b6.chunk.css.map",
     "static/media/instalogo.png": "/hipdadradio/static/media/instalogo.112df6ad.png",
     "static/media/logo.png": "/hipdadradio/static/media/logo.ec50eb0e.png"
   }
