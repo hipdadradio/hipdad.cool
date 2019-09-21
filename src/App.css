@@ -44,6 +44,7 @@
 }
 
 .djsContainer {
+  display: inline-block;
   min-width: 80vmin;
   max-width: 80vmin;
 }
