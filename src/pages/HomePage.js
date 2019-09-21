@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { AboutContainer } from '../containers/about/AboutContainer';
+import { YouTubeVideoContainer } from '../containers/shows/YouTubeVideoContainer';
 /*
     Container that holds the Home page
  */
@@ -8,9 +9,8 @@ export class HomePage extends React.Component {
     render() {
         return (
             <div className="homeContainer">
-                <h2>You found us!</h2>
-                <h4>Here is a bit about Hip Dad Radio</h4>
-                <p>Words words words words words words words words words</p>
+                <h2>Welcome to the FUTURE OF RADIO!</h2>
+                <YouTubeVideoContainer src="lOs6MvrmK6U" title="Grab a seat and listen up." description="" />
                 <hr />
                 <AboutContainer />
             </div>
