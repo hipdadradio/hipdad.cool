@@ -54,6 +54,7 @@ export class ShowsPage extends React.Component {
 
         return (
             <div className="showsContainer">
+                <h2>Hip Dad Shows</h2>
                 <div hidden={this.state.showSelected}>
                     {this.state.showList.map(show => (
                         <ShowButton handleClick={this.showSelected} key={show.title} show={show} />

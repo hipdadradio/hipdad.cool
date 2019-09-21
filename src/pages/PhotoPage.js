@@ -52,7 +52,7 @@ export class PhotoPage extends React.Component {
     render() {
         return (
             <>
-                <h2>Photo Archive</h2>
+                <h2>Photo Archives</h2>
                 <div hidden={this.state.albumSelected}>
                     {this.state.archives.map(archive => (
                         <PhotoArchiveListItem key={archive.title} count={archive.photos.length} imgSrc={archive.photos[0].imgSrc} title={archive.title} description={archive.description} author={archive.author} handleClick={this.handleSelection} photos={archive.photos} />
