@@ -9,7 +9,7 @@ export class HomePage extends React.Component {
     render() {
         return (
             <div className="homeContainer">
-                <h2>Welcome to the FUTURE OF RADIO!</h2>
+                <h2>Welcome to the future of radio...</h2>
                 <YouTubeVideoContainer src="lOs6MvrmK6U" title="Grab a seat and listen up." description="" />
                 <hr />
                 <AboutContainer />
