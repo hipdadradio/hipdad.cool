@@ -187,5 +187,6 @@ textarea {
 }
 
 .formButton {
-  width: 80%;
+  min-width: 60vmin;
+  max-width: 60vmin
 }
