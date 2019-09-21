@@ -21,3 +21,7 @@ export const getMaxVideoWidth = () => {
 
     return width;
 }
+
+export const isMobileDevice = () => {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
