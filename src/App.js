@@ -22,9 +22,9 @@ function App() {
             <NavLink to="/" exact activeClassName="active">Home</NavLink>
             <NavLink to="/news/" exact activeClassName="active">News</NavLink>
             <NavLink to="/listen/" exact activeClassName="active">Listen</NavLink>
-            <NavLink to="/contact/" exact activeClassName="active">Contact Us</NavLink>
-            <NavLink to="/photos/" exact activeClassName="active">Photos</NavLink>
             <NavLink to="/shows/" exact activeClassName="active">Shows</NavLink>
+            <NavLink to="/photos/" exact activeClassName="active">Photos</NavLink>
+            <NavLink to="/contact/" exact activeClassName="active">Contact Us</NavLink>
           </ul>
         </nav>
         <div className="pageContainer">
