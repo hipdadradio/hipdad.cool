@@ -44,7 +44,8 @@
 }
 
 .djsContainer {
-  max-width: 700px;
+  min-width: 80vmin;
+  max-width: 80vmin;
 }
 
 .djContainer {
@@ -67,8 +68,6 @@
 .newsContainer {
   max-width: 900px;
 }
-
-
 
 .newsImageContainer {
   min-height: 20vw;
