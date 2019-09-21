@@ -11,9 +11,13 @@ export class ShowContainer extends React.Component {
         return (
             <>
                 <button onClick={this.props.backToShows}>Back to Shows</button>
-                <h2>{this.props.title} Archive</h2>
+                <div className="textContainer">
+                    <h2>{this.props.show.title}</h2>
+                    <h4>{this.props.show.desc}</h4>
+                </div>
+                <hr />
                 <div>
-                    <YouTubePlaylistContainer playlistId={this.props.playlistId} />
+                    <YouTubePlaylistContainer playlistId={this.props.show.playlistId} />
                 </div>
             </>
         );

@@ -6,8 +6,9 @@ export class ScheduledProgramDescriptor extends React.Component {
     render() {
         return (
             <div>
+                <hr />
                 {this.props.title}<br />
-                {formatTimeSpanString(this.props)}<br />
+                {formatTimeSpanString(this.props)}
             </div>
         )
     }

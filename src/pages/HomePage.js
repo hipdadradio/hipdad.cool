@@ -11,6 +11,7 @@ export class HomePage extends React.Component {
                 <h2>You found us!</h2>
                 <h4>Here is a bit about Hip Dad Radio</h4>
                 <p>Words words words words words words words words words</p>
+                <hr />
                 <AboutContainer />
             </>
         );

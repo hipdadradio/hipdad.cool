@@ -8,16 +8,16 @@ export class ShowButton extends React.Component {
     }
 
     handleClick() {
-        this.props.handleClick(this.props.title, this.props.playlistId);
+        this.props.handleClick(this.props.show);
     }
 
     render() {
         return (
             <>
                 <button onClick={this.handleClick}>
-                    <h3>{this.props.title}</h3>
-                    <img className="showImageContainer" src={this.props.imagesrc} alt={this.props.title} />
-                    <p className="textContainer">{this.props.desc}</p>
+                    <img className="showImageContainer" src={this.props.show.imagesrc} alt={this.props.show.title} />
+                    <h3>{this.props.show.title}</h3>
+                    <p className="textContainer">{this.props.show.desc}</p>
                 </button>
                 <br />
             </>

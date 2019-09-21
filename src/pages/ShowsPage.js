@@ -3,6 +3,7 @@ import React from 'react';
 import { ShowContainer } from '../containers/shows/ShowContainer';
 import { ShowButton } from '../components/shows/ShowButton';
 import { fetchShowsList } from '../util/DBUtil';
+import { scrollToTop } from '../util/AppUtil';
 
 export class ShowsPage extends React.Component {
     constructor(props) {
@@ -10,8 +11,7 @@ export class ShowsPage extends React.Component {
 
         this.state = {
             showSelected: false,
-            title: '',
-            playlistId: '',
+            show: {},
             showList: []
         };
 
@@ -28,20 +28,19 @@ export class ShowsPage extends React.Component {
         fetchShowsList(this.handleFetchedShows);
     }
 
-    showSelected(title, playlistId) {
+    showSelected(show) {
+        scrollToTop();
         this.setState({
             showSelected: true,
-            title: title,
-            playlistId: playlistId
-        })
+            show: show,
+        });
     }
 
     clearSelection() {
         this.setState({
             showSelected: false,
-            title: '',
-            playlistId: ''
-        })
+            show: {}
+        });
     }
 
     render() {
@@ -49,7 +48,7 @@ export class ShowsPage extends React.Component {
 
         if (this.state.showSelected) {
             showContainer = (<div hidden={!this.state.showSelected}>
-                <ShowContainer backToShows={this.clearSelection} hidden={!this.showSelected} playlistId={this.state.playlistId} title={this.state.title} />
+                <ShowContainer backToShows={this.clearSelection} hidden={!this.showSelected} show={this.state.show} />
             </div>);
         }
 
@@ -57,7 +56,7 @@ export class ShowsPage extends React.Component {
             <div className="showsContainer">
                 <div hidden={this.state.showSelected}>
                     {this.state.showList.map(show => (
-                        <ShowButton handleClick={this.showSelected} key={show.title} title={show.title} imagesrc={show.imagesrc} desc={show.desc} playlistId={show.playlistId} />
+                        <ShowButton handleClick={this.showSelected} key={show.title} show={show} />
                     ))}
                 </div>
                 {showContainer}
