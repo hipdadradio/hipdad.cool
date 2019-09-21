@@ -2,7 +2,7 @@
   "name": "hdr",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://hipdadradio.github.io/hipdadradio",
+  "homepage": "https://hipdad.cool",
   "dependencies": {
     "@material-ui/core": "^4.3.2",
     "gapi-client": "0.0.3",
