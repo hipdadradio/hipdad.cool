@@ -8,8 +8,6 @@ ISSUES
 
 ENHANCEMENTS
 
-3. Redo all CSS from scratch
-
 5. Phony pop-up ads
 
 6. Dancing DJs across the screen
@@ -21,7 +19,7 @@ ENHANCEMENTS
 
 9. When you download things from HDR there are fake updates to update flash robo dj telling you to put in your credit card number
 
-10. When using the datacache, store processed values inside
+11. Expandable news summaries
 
 ####################################################################################################################
 
