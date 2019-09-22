@@ -74,6 +74,11 @@
   max-width: 900px;
 }
 
+.listenContainer {
+  width: 80vw;
+  max-width:900px;
+}
+
 .newsImageContainer {
   min-height: 20vw;
   max-height: 20vw;

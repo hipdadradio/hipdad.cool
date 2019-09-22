@@ -109,7 +109,9 @@ export class Player extends React.Component {
     }
 
     bindYouTubePlayer(event) {
-        this.setState({ youTubePlayer: event.target });
+        this.setState({
+            youTubePlayer: event.target
+        });
 
         // Check for scheduled programming
         checkForScheduledShow(this.playScheduledProgramming, this.handleFetchingPlaylist);
@@ -181,7 +183,7 @@ export class Player extends React.Component {
         // Update the currentlyPlaying variable to signal that we're playing scheduled programming
         this.setState({
             playing: PlayerConstants.PROGRAMMING,
-            activePlayer: PlayerConstants.YOUTUBE
+            activePlayer: PlayerConstants.YOUTUBE,
         });
     }
 
@@ -197,7 +199,9 @@ export class Player extends React.Component {
 
         if (this.state.activePlayer === PlayerConstants.YOUTUBE) {
             this.state.youTubePlayer.playVideo();
-            this.setState({ playing: PlayerConstants.HDR });
+            this.setState({
+                playing: PlayerConstants.HDR
+            });
         }
     }
 
@@ -227,12 +231,16 @@ export class Player extends React.Component {
 
     render() {
         return (
-            <>
+            <div className="listenContainer">
+                <hr />
+                <h1>Hip Dad Keynote</h1>
+                <h2>LIVE 9/22/2019 5:00pm CST</h2>
+                <hr />
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
                 <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <ScheduleContainer />
-            </>
+            </div>
         )
     }
 }
