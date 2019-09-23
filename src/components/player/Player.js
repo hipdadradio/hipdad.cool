@@ -7,6 +7,7 @@ import { checkForScheduledShow } from '../../util/DBUtil';
 import { fetchPlaylistVideos } from '../../util/YouTubeUtil';
 import { shuffle } from '../../util/DataUtil';
 import { VideoHeader } from './VideoHeader';
+import Loader from 'react-loader-spinner';
 
 import PlayerConstants from '../../data/PlayerConstants.json';
 import YTConstants from '../../data/YTConstants.json';
@@ -232,12 +233,17 @@ export class Player extends React.Component {
     render() {
         return (
             <div className="listenContainer">
-                <hr />
-                <h1>Hip Dad Keynote</h1>
-                <h2>LIVE 9/22/2019 5:00pm CST</h2>
-                <hr />
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
-                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer} />
+                <div hidden={this.state.videoTitle !== '...'}>
+                    <Loader
+                        type="Audio"
+                        color="Black"
+                        height={100}
+                        width={100}
+                        timeout={10000}
+                    />
+                </div>
+                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <ScheduleContainer />
             </div>
