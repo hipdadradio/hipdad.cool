@@ -11,7 +11,6 @@ import Loader from 'react-loader-spinner';
 
 import PlayerConstants from '../../data/PlayerConstants.json';
 import YTConstants from '../../data/YTConstants.json';
-import { getMaxVideoHeight } from '../../util/AppUtil';
 
 const Twitch = window.Twitch;
 
@@ -232,12 +231,18 @@ export class Player extends React.Component {
     }
 
     render() {
-        let loader = this.state.videoTitle === '...' ? <Loader type="Audio" color="Black" height={getMaxVideoHeight()} width={100} timeout={999999} /> : null;
-
         return (
             <div className="listenContainer">
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
-                {loader}
+                <div hidden={this.state.videoTitle !== '...'}>
+                    <Loader
+                        type="Audio"
+                        color="Black"
+                        height={100}
+                        width={100}
+                        timeout={10000}
+                    />
+                </div>
                 <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <h2>Fall Schedule:</h2>

@@ -3,8 +3,6 @@ import React from 'react';
 import { AboutContainer } from '../containers/about/AboutContainer';
 import { YouTubeVideoContainer } from '../containers/shows/YouTubeVideoContainer';
 import { MailingListFormContainer } from '../containers/contact/MailingListFormContainer';
-import { ScheduleContainer } from '../containers/shows/ScheduleContainer';
-
 
 /*
     Container that holds the Home page
