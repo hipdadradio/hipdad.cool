@@ -377,11 +377,10 @@ export const fetchSchedule = (callback) => {
                     // If we have a successful request, we will parse the response and check if we have a video to play
                     let scheduleData = JSON.parse(Http.responseText);
 
-                    // Get rid of the first row of the sheet
-                    let scheduledShows = scheduleData.values.splice(1);
+                    let schedule = scheduleData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.SCHEDULE]
-                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(scheduledShows);
+                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(schedule);
                     callback(dataCache[DBConstants.SCHEDULE]);
                 } else {
                     console.error(Http.statusText);
@@ -405,7 +404,9 @@ const buildScheduleURL = () => {
 
     url += "/values/" + DBConstants.values.schedule.DB_VALUES;
 
-    url += "?key=" + APIConstants.KEY;
+    url += "?majorDimension=COLUMNS";
+
+    url += "&key=" + APIConstants.KEY;
 
     return url;
 }
@@ -441,18 +442,10 @@ const parseScheduleData = (scheduleData) => {
             }
         }
 
-        // Iterate over the scheduleData and turn each array entry into an object
-        scheduleData.forEach(function (show) {
-            shows.push({
-                title: show[DBConstants.values.schedule.COLUMN_HEADERS.SHOW_TITLE],
-                videoId: show[DBConstants.values.schedule.COLUMN_HEADERS.VIDEO_ID],
-                startDate: Date.parse(show[DBConstants.values.schedule.COLUMN_HEADERS.START_DATE]),
-                endDate: Date.parse(show[DBConstants.values.schedule.COLUMN_HEADERS.END_DATE]),
-            });
-        });
-
-        return shows;
+        schedule[day[0]] = dailySchedule;
     }
+
+    return schedule;
 }
 
 export const formatTimeSpanString = (props) => {
