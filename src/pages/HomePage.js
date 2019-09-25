@@ -13,9 +13,12 @@ export class HomePage extends React.Component {
     render() {
         return (
             <div className="homeContainer">
-                <ScheduleContainer />
-                <h3>Welcome to the future of radio...</h3>
+                <h2>Welcome to the future of radio...</h2>
                 <YouTubeVideoContainer src="YcLpNPvFoXk" title="Missed the Keynote? Watch the whole thing right here." description="" />
+                <hr />
+                <h2>Check out the Fall Schedule!</h2>
+                <ScheduleContainer />
+                <hr />
                 <MailingListFormContainer />
                 <hr />
                 <AboutContainer />

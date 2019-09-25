@@ -240,6 +240,7 @@ export class Player extends React.Component {
                 {loader}
                 <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
+                <h2>Fall Schedule:</h2>
                 <ScheduleContainer />
             </div>
         )

@@ -25,3 +25,19 @@ export const getMaxVideoWidth = () => {
 export const isMobileDevice = () => {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
+
+export const convertFromMilitaryTime = (time) => {
+    let intTime = parseInt(time, 10);
+    let suffix = ':00 AM CST';
+
+
+    if (intTime > 11) {
+        suffix = ':00 PM CST';
+
+        if (intTime > 12) {
+            intTime -= 12;
+        }
+    }
+
+    return intTime + suffix;
+}

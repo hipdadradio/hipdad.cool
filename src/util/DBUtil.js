@@ -3,6 +3,8 @@ import React from 'react';
 import DBConstants from '../data/DBConstants.json';
 import APIConstants from '../data/APIConstants.json'
 
+import { fetchVideoDuration } from './YouTubeUtil';
+
 // Cache
 let dataCache = {};
 
@@ -308,12 +310,13 @@ const parseNewsData = (newsData) => {
  */
 export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPlaylist) => {
     if (dataCache[DBConstants.SCHEDULE] !== undefined) {
-        let videoToPlay = checkForVideoToPlay(dataCache[DBConstants.SCHEDULE]);
+        // let videoToPlay = checkForVideoToPlay(dataCache[DBConstants.SCHEDULE]);
 
-        // If we have a video to play, lets call our callback function with the video's videoId and startTime
-        if (videoToPlay.shouldPlay) {
-            playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
-        } else if (handleFetchingPlaylist) {
+        // // If we have a video to play, lets call our callback function with the video's videoId and startTime
+        // if (videoToPlay.shouldPlay) {
+        //     playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
+        // } else 
+        if (handleFetchingPlaylist) {
             handleFetchingPlaylist();
         }
     } else {
@@ -335,12 +338,13 @@ export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPl
                     // Assign response to dataCache[DBConstants.SCHEDULE]
                     dataCache[DBConstants.SCHEDULE] = scheduledShows;
 
-                    let videoToPlay = checkForVideoToPlay(scheduledShows);
+                    // let videoToPlay = checkForVideoToPlay(scheduledShows);
 
                     // If we have a video to play, lets call our callback function with the video's videoId and startTime
-                    if (videoToPlay.shouldPlay) {
-                        playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
-                    } else if (handleFetchingPlaylist) {
+                    // if (videoToPlay.shouldPlay) {
+                    //     playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
+                    // } else 
+                    if (handleFetchingPlaylist) {
                         handleFetchingPlaylist();
                     }
                 } else {
@@ -356,6 +360,8 @@ export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPl
 }
 
 export const fetchSchedule = (callback) => {
+    fetchVideoDuration('OmZls-BblEw&t=23s', () => { });
+
     if (dataCache[DBConstants.SCHEDULE] !== undefined) {
         callback(dataCache[DBConstants.SCHEDULE]);
     } else {
@@ -424,7 +430,7 @@ const parseScheduleData = (scheduleData) => {
     for (var j = 0; j < 7; j++) {
         let day = scheduleData[j];
 
-        let dailySchedule = [];
+        let dailySchedule = [day[0]];
 
         for (var k = 1; k < day.length; k++) {
             if (day[k]) {
