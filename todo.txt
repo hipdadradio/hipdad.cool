@@ -4,6 +4,10 @@ TODO:
 
 ISSUES
 
+1. Spacing issues when the DJ application button is pressed
+
+2. YouTube player starts playing before Twitch starts playing
+
 ####################################################################################################################
 
 ENHANCEMENTS
@@ -21,12 +25,4 @@ ENHANCEMENTS
 
 11. Expandable news summaries
 
-####################################################################################################################
-
-DOCUMENTATION
-
-1. Guides on how to add data to the Google Sheets
-
-2. Guides on how to schedule shows
-
-3. Guides on how to add photos to photo page
+12. Scheduling based on playlists not just videos
