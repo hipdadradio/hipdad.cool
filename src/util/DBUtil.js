@@ -371,10 +371,11 @@ export const fetchSchedule = (callback) => {
                     // If we have a successful request, we will parse the response and check if we have a video to play
                     let scheduleData = JSON.parse(Http.responseText);
 
-                    let schedule = scheduleData.values.splice(1);
+                    // Get rid of the first row of the sheet
+                    let scheduledShows = scheduleData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.SCHEDULE]
-                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(schedule);
+                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(scheduledShows);
                     callback(dataCache[DBConstants.SCHEDULE]);
                 } else {
                     console.error(Http.statusText);
@@ -398,9 +399,7 @@ const buildScheduleURL = () => {
 
     url += "/values/" + DBConstants.values.schedule.DB_VALUES;
 
-    url += "?majorDimension=COLUMNS";
-
-    url += "&key=" + APIConstants.KEY;
+    url += "?key=" + APIConstants.KEY;
 
     return url;
 }
@@ -409,37 +408,19 @@ const buildScheduleURL = () => {
     Function that will take the array of arrays of scheduled shows and convert it to an array of objects
  */
 const parseScheduleData = (scheduleData) => {
-    let schedule = {};
+    let shows = [];
 
-    let idsArray = scheduleData.slice(8);
+    // Iterate over the scheduleData and turn each array entry into an object
+    scheduleData.forEach(function (show) {
+        shows.push({
+            title: show[DBConstants.values.schedule.COLUMN_HEADERS.SHOW_TITLE],
+            videoId: show[DBConstants.values.schedule.COLUMN_HEADERS.VIDEO_ID],
+            startDate: Date.parse(show[DBConstants.values.schedule.COLUMN_HEADERS.START_DATE]),
+            endDate: Date.parse(show[DBConstants.values.schedule.COLUMN_HEADERS.END_DATE]),
+        });
+    });
 
-    let ids = {}
-
-    for (var i = 1; i < idsArray[0].length; i++) {
-        var key = idsArray[0][i];
-
-        ids[key] = idsArray[1][i] ? idsArray[1][i] : "";
-    }
-
-    for (var j = 0; j < 7; j++) {
-        let day = scheduleData[j];
-
-        let dailySchedule = [];
-
-        for (var k = 1; k < day.length; k++) {
-            if (day[k]) {
-                dailySchedule.push({
-                    time: k - 1,
-                    name: day[k],
-                    id: ids[day[k]]
-                });
-            }
-        }
-
-        schedule[day[0]] = dailySchedule;
-    }
-
-    return schedule;
+    return shows;
 }
 
 export const formatTimeSpanString = (props) => {
