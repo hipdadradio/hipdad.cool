@@ -19,7 +19,7 @@ const Twitch = window.Twitch;
 const PLAYLIST_ID = YTConstants.PLAYLIST_ID
 
 // Variable to keep track of how many seconds the player has waited to start
-let unstartedSeconds = 0;
+// let unstartedSeconds = 0;
 
 
 /*
@@ -43,11 +43,11 @@ export class Player extends React.Component {
         this.showTwitch = this.showTwitch.bind(this);
         this.hideTwitch = this.hideTwitch.bind(this);
         this.startYouTubePlayerRunner = this.startYouTubePlayerRunner.bind(this);
-        this.startBlockedYouTubeVideoChecker = this.startBlockedYouTubeVideoChecker.bind(this);
         this.handleFetchingPlaylist = this.handleFetchingPlaylist.bind(this);
         this.startYouTubePlayer = this.startYouTubePlayer.bind(this);
         this.playScheduledProgramming = this.playScheduledProgramming.bind(this);
         this.handleYouTubeStateChange = this.handleYouTubeStateChange.bind(this);
+        this.handleYoutubeError = this.handleYoutubeError.bind(this);
     }
 
     bindTwitchPlayer(twitchPlayer) {
@@ -120,17 +120,12 @@ export class Player extends React.Component {
 
         // Start the player runner
         this.startYouTubePlayerRunner();
-
-        // Start the blocked video checker
-        this.startBlockedYouTubeVideoChecker();
     }
 
-    /*
-        Function that will start a runner that checks the youtube player state every second
-        Handles state appropriately
-    */
     startYouTubePlayerRunner() {
         setInterval(function (self) {
+            self.setState({ numberOfListeners: Math.abs(self.state.numberOfListeners + (Math.round(Math.random() * 2 - 1))) })
+
             if (self.state.playing === PlayerConstants.HDR) {
                 // If HDR is playing we want to check for programming
                 checkForScheduledShow(self.playScheduledProgramming);
@@ -141,29 +136,19 @@ export class Player extends React.Component {
         }, 60000, this);
     }
 
-    /*
-        Function that will check every second to see if a video playing is blocked and should be skipped
-    */
-    startBlockedYouTubeVideoChecker() {
-        setInterval(
-            function (self) {
-                self.setState({ numberOfListeners: Math.abs(self.state.numberOfListeners + (Math.round(Math.random() * 2 - 1))) })
+    handleYoutubeError(event) {
+        /*
+            event.data will be one of the following
+            2 – The request contains an invalid parameter value. For example, this error occurs if you specify a video ID that does not have 11 characters, or if the video ID contains invalid characters, such as exclamation points or asterisks.
+            5 – The requested content cannot be played in an HTML5 player or another error related to the HTML5 player has occurred.
+            100 – The video requested was not found. This error occurs when a video has been removed (for any reason) or has been marked as private.
+            101 – The owner of the requested video does not allow it to be played in embedded players.
+            150 – This error is the same as 101. It's just a 101 error in disguise!
+        */
 
-                // If we're playing the playlist check the state of the player
-                if (self.state.playing === PlayerConstants.HDR) {
-                    // If we've been waiting over 2 seconds, skip the video
-                    if (unstartedSeconds > 2) {
-                        // Play the next video and reset the count
-                        self.state.youTubePlayer.nextVideo();
-                        unstartedSeconds = 0;
-                    } else if (self.state.youTubePlayer.getPlayerState() === YTConstants.UNSTARTED) {
-                        // Increment the number of seconds we've been waiting
-                        unstartedSeconds += 1;
-                    } else {
-                        unstartedSeconds = 0;
-                    }
-                }
-            }, 1000, this);
+        console.log(event.data);
+
+        this.state.youTubePlayer.nextVideo();
     }
 
     /* 
@@ -238,7 +223,7 @@ export class Player extends React.Component {
             <div className="listenContainer">
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
                 {loader}
-                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
+                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onError={this.handleYoutubeError} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <h2>Fall Schedule:</h2>
                 <ScheduleContainer />

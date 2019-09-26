@@ -235,3 +235,8 @@ textarea {
   text-align: left;
   padding: 5px;
 }
+
+.activeProgramBox {
+  background-color: black;
+  color: burlywood;
+}
