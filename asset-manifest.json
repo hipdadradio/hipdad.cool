@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.e36f80fa.chunk.css",
-    "main.js": "/static/js/main.eebc0c92.chunk.js",
-    "main.js.map": "/static/js/main.eebc0c92.chunk.js.map",
+    "main.css": "/static/css/main.b99981a0.chunk.css",
+    "main.js": "/static/js/main.d6f0bf97.chunk.js",
+    "main.js.map": "/static/js/main.d6f0bf97.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
     "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.a6b11eaf.chunk.js": "/static/js/2.a6b11eaf.chunk.js",
-    "static/js/2.a6b11eaf.chunk.js.map": "/static/js/2.a6b11eaf.chunk.js.map",
+    "static/js/2.9f58054e.chunk.js": "/static/js/2.9f58054e.chunk.js",
+    "static/js/2.9f58054e.chunk.js.map": "/static/js/2.9f58054e.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.9aae98c5367569601b2e798cc8c0f571.js": "/precache-manifest.9aae98c5367569601b2e798cc8c0f571.js",
+    "precache-manifest.7c4906e41289ecb709831b0bde50cd2d.js": "/precache-manifest.7c4906e41289ecb709831b0bde50cd2d.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.e36f80fa.chunk.css.map": "/static/css/main.e36f80fa.chunk.css.map",
+    "static/css/main.b99981a0.chunk.css.map": "/static/css/main.b99981a0.chunk.css.map",
     "static/media/instalogo.png": "/static/media/instalogo.112df6ad.png",
     "static/media/logo.png": "/static/media/logo.ec50eb0e.png"
   }
