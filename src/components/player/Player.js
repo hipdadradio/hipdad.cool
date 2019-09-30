@@ -217,13 +217,13 @@ export class Player extends React.Component {
     }
 
     render() {
-        let loader = this.state.videoTitle === '...' ? <Loader type="Audio" color="Black" height={getMaxVideoHeight()} width={100} timeout={999999} /> : null;
+        let loader = this.state.videoTitle === '...' ? <Loader type="Audio" color="Black" height={getMaxVideoHeight()} width={100} timeout={3000} /> : null;
 
         return (
             <div className="listenContainer">
                 <VideoHeader videoTitle={this.state.videoTitle} numberOfListeners={this.state.numberOfListeners} />
                 {loader}
-                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onError={this.handleYoutubeError} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer && this.state.videoTitle !== '...'} />
+                <YouTubePlayer onInitialize={this.bindYouTubePlayer} onError={this.handleYoutubeError} onStateChange={this.handleYouTubeStateChange} visible={this.state.activePlayer === PlayerConstants.YOUTUBE && this.state.youTubePlayer} />
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <h2>Fall Schedule:</h2>
                 <ScheduleContainer />
