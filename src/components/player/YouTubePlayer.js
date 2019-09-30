@@ -22,9 +22,11 @@ export class YouTubePlayer extends React.Component {
     }
 
     render() {
+
+
         return (
             <>
-                <div hidden={!this.props.visible} className={this.state.isMobileDevice ? "" : "noInteraction"}>
+                <div style={{ height: getMaxVideoHeight(), width: getMaxVideoWidth() }} hidden={!this.props.visible} className={this.state.isMobileDevice ? "" : "noInteraction"}>
                     <YouTube opts={this.state.opts} onReady={this.props.onInitialize} onError={this.props.onError} onStateChange={this.props.onStateChange} />
                 </div>
             </>

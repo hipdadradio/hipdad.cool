@@ -45,7 +45,7 @@ export class ScheduleContainer extends React.Component {
         return (
             <div className="scheduleContainer">
                 {this.state.schedule.map(day => (
-                    <DailySchedule key={day[0]} day={day[0]} schedule={day.slice(1)} />
+                    <DailySchedule key={day[0]} day={day[0]} schedule={day.slice(1)} activeProgramId={this.props.activeProgramId} />
                 ))}
             </div>
         );

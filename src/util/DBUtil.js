@@ -3,7 +3,7 @@ import React from 'react';
 import DBConstants from '../data/DBConstants.json';
 import APIConstants from '../data/APIConstants.json'
 
-import { fetchVideoDuration } from './YouTubeUtil';
+import YTConstants from '../data/YTConstants';
 
 // Cache
 let dataCache = {};
@@ -305,20 +305,9 @@ const parseNewsData = (newsData) => {
 // SCHEDULE
 // ##########################################################
 
-/*
-    Function that fetches and handles videos to play from google sheets
- */
-export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPlaylist) => {
+export const checkForScheduledShow = (populateAndPlay) => {
     if (dataCache[DBConstants.SCHEDULE] !== undefined) {
-        // let videoToPlay = checkForVideoToPlay(dataCache[DBConstants.SCHEDULE]);
-
-        // // If we have a video to play, lets call our callback function with the video's videoId and startTime
-        // if (videoToPlay.shouldPlay) {
-        //     playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
-        // } else 
-        if (handleFetchingPlaylist) {
-            handleFetchingPlaylist();
-        }
+        checkForVideoToPlay(dataCache[DBConstants.SCHEDULE], populateAndPlay);
     } else {
         // Initiate the http request object
         const Http = new XMLHttpRequest();
@@ -332,21 +321,12 @@ export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPl
                     // If we have a successful request, we will parse the response and check if we have a video to play
                     let scheduleData = JSON.parse(Http.responseText);
 
-                    // Get rid of the first row of the sheet
-                    let scheduledShows = scheduleData.values.splice(1);
+                    let schedule = scheduleData.values.splice(1);
 
                     // Assign response to dataCache[DBConstants.SCHEDULE]
-                    dataCache[DBConstants.SCHEDULE] = scheduledShows;
+                    dataCache[DBConstants.SCHEDULE] = parseScheduleData(schedule);
 
-                    // let videoToPlay = checkForVideoToPlay(scheduledShows);
-
-                    // If we have a video to play, lets call our callback function with the video's videoId and startTime
-                    // if (videoToPlay.shouldPlay) {
-                    //     playScheduledProgramming(videoToPlay.videoId, videoToPlay.startTime);
-                    // } else 
-                    if (handleFetchingPlaylist) {
-                        handleFetchingPlaylist();
-                    }
+                    checkForVideoToPlay(dataCache[DBConstants.SCHEDULE], populateAndPlay);
                 } else {
                     console.error(Http.statusText);
                 }
@@ -359,9 +339,48 @@ export const checkForScheduledShow = (playScheduledProgramming, handleFetchingPl
     }
 }
 
-export const fetchSchedule = (callback) => {
-    fetchVideoDuration('OmZls-BblEw&t=23s', () => { });
+/*
+    Function that will take in scheduleData retreived from google sheets and determine if a video should play
+ */
+const checkForVideoToPlay = (schedule, populateAndPlay) => {
+    // Get today's schedule
+    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    const today = new Date();
+    const hour = today.getHours();
+    const dotw = today.getDay();
 
+    let dailyProgramming = schedule[days[dotw]].slice(1);
+
+    // Placeholder of video to play
+    let toPlay = {
+        name: 'HDR',
+        videoId: '',
+        startTime: 0,
+        playlistId: YTConstants.PLAYLIST_ID,
+        programId: -1
+    };
+
+    // Iterate over all of the daily programming and see where we are in the schedule
+    dailyProgramming.forEach(function (program) {
+        if (program.time <= hour) {
+            toPlay.startTime = program.time;
+            toPlay.name = program.name;
+            toPlay.programId = program.programId;
+            // This is a video based on the length of the ID
+            if (program.id.length === 11) {
+                toPlay.videoId = program.id;
+                toPlay.playlistId = YTConstants.PLAYLIST_ID;
+            } else {
+                toPlay.videoId = '';
+                toPlay.playlistId = program.id ? program.id : YTConstants.PLAYLIST_ID;
+            }
+        }
+    });
+
+    populateAndPlay(toPlay);
+}
+
+export const fetchSchedule = (callback) => {
     if (dataCache[DBConstants.SCHEDULE] !== undefined) {
         callback(dataCache[DBConstants.SCHEDULE]);
     } else {
@@ -415,29 +434,38 @@ const buildScheduleURL = () => {
     Function that will take the array of arrays of scheduled shows and convert it to an array of objects
  */
 const parseScheduleData = (scheduleData) => {
+    // Initialize our schedule object
     let schedule = {};
 
+    // Get the array of ids from the scheduleData
     let idsArray = scheduleData.slice(8);
 
     let ids = {}
 
+    let programId = 1;
+
+    // We iterate over the idsArray and create an association from a name to an ID
     for (var i = 1; i < idsArray[0].length; i++) {
         var key = idsArray[0][i];
 
         ids[key] = idsArray[1][i] ? idsArray[1][i] : "";
     }
 
+    // Iterate over each day in the scheduledata
     for (var j = 0; j < 7; j++) {
         let day = scheduleData[j];
 
+        // Each day has its own schedule
         let dailySchedule = [day[0]];
 
+        // Iterate over each scheduled program in the array and create a program object for it
         for (var k = 1; k < day.length; k++) {
             if (day[k]) {
                 dailySchedule.push({
                     time: k - 1,
                     name: day[k],
-                    id: ids[day[k]]
+                    id: ids[day[k]],
+                    programId: programId++
                 });
             }
         }
@@ -464,44 +492,4 @@ export const formatTimeSpanString = (props) => {
             {startDateString} - {endDateString}
         </div>
     );
-}
-
-/*
-    Function that will take in scheduleData retreived from google sheets and determine if a video should play
- */
-const checkForVideoToPlay = (scheduledShows) => {
-    // Convert show data to array of objects
-    let showObjects = parseScheduleData(scheduledShows);
-
-    // Get current time so we know what time we should be looking for in the shows
-    let currentTime = Date.now();
-
-    // Placeholder of video to play
-    let videoToPlay = {
-        shouldPlay: false,
-    };
-
-    // Iterate over each show object to check if we should play it
-    showObjects.forEach(function (show) {
-        if (show.startDate < currentTime && show.endDate > currentTime) {
-            // It looks like we have a show that should play
-            let startTime = 0;
-
-            // Check to see if we're tuning in late!
-            if (currentTime - show.startDate > 60000) {
-                // If we are, adjust the startTime to where we should be
-                startTime = (currentTime - show.startDate) / 1000;
-            }
-
-            // Set videoToPlay to the video as an object with its' videoId and startTime
-            videoToPlay = {
-                shouldPlay: true,
-                videoId: show.videoId,
-                startTime: startTime
-            }
-        }
-    });
-
-    // If we have nothing to play
-    return videoToPlay;
 }

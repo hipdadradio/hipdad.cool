@@ -8,7 +8,7 @@ export class DailySchedule extends React.Component {
             <div className="dailySchedule">
                 <h4>{this.props.day}</h4>
                 {this.props.schedule.map(program => (
-                    <Program key={this.props.day + program.name + program.time} program={program} />
+                    <Program key={this.props.day + program.name + program.time} program={program} active={this.props.activeProgramId === program.programId} />
                 ))}
             </div>
         )

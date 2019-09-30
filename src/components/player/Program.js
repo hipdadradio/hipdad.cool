@@ -14,7 +14,8 @@ export class Program extends React.Component {
     render() {
         let className = "programBox";
 
-        if (this.state.active) {
+        // If we are the active program, we want to append an additional className
+        if (this.props.active) {
             className += "  activeProgramBox";
         }
 
