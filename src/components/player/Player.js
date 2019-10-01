@@ -254,6 +254,7 @@ export class Player extends React.Component {
                 <TwitchPlayer onInitialize={this.bindTwitchPlayer} visible={this.state.videoTitle === "Hip Dad Radio LIVE"} />
                 <h2>Fall Schedule:</h2>
                 <ScheduleContainer activeProgramId={this.state.activeProgram.programId} />
+                <hr />
             </div>
         )
     }
