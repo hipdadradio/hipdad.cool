@@ -14,10 +14,10 @@ export class ShowButton extends React.Component {
     render() {
         return (
             <>
-                <button onClick={this.handleClick}>
+                <button onClick={this.handleClick} className="showButton">
                     <img className="showImageContainer" src={this.props.show.imagesrc} alt={this.props.show.title} />
-                    <h3>{this.props.show.title}</h3>
-                    <p className="textContainer">{this.props.show.desc}</p>
+                    {/* <h3>{this.props.show.title}</h3> */}
+                    {/* <p className="textContainer">{this.props.show.desc}</p> */}
                 </button>
                 <br />
             </>

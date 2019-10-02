@@ -44,24 +44,29 @@ export class ShowsPage extends React.Component {
     }
 
     render() {
+        let showButtons = null;
         let showContainer = null;
 
         if (this.state.showSelected) {
             showContainer = (<div hidden={!this.state.showSelected}>
                 <ShowContainer backToShows={this.clearSelection} hidden={!this.showSelected} show={this.state.show} />
             </div>);
+        } else {
+            showButtons = (<div className="showButtonsContainer">
+                {this.state.showList.map(show => (
+                    <ShowButton handleClick={this.showSelected} key={show.title} show={show} />
+                ))}
+            </div>);
         }
 
         return (
-            <div className="showsContainer">
+            <>
                 <h2>Hip Dad Shows</h2>
-                <div hidden={this.state.showSelected}>
-                    {this.state.showList.map(show => (
-                        <ShowButton handleClick={this.showSelected} key={show.title} show={show} />
-                    ))}
+                <div className="showsContainer">
+                    {showButtons}
+                    {showContainer}
                 </div>
-                {showContainer}
-            </div>
+            </>
         );
     }
 }
