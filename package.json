@@ -12,7 +12,7 @@
     "react-iframe": "^1.8.0",
     "react-loader-spinner": "^3.1.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-youtube": "^7.9.0",
     "tabletop": "^1.5.2"
   },
